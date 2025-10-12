@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="icon" type="image/png" href="./logo.png">
+
+   <title>Projet Hono Steph</title>
+   <style>
+      @font-face {
+         font-family: Arcade;
+         src: url(PressStart2P-Regular.ttf);
+      }
+
+      * {
+         padding: 0;
+         margin: 0;
+         box-sizing: border-box;
+         font-family: Arcade, sans-serif;
+         color: #fff;
+
+         scrollbar-width: thin;
+         scrollbar-color: rgba(170, 28, 146, 1) #111;
+      }
+
+      /* Scrollbar style arcade avec dégradé sur toute la hauteur */
+      ::-webkit-scrollbar {
+         width: 14px;
+         background-color: #111;
+      }
+
+      ::-webkit-scrollbar-track {
+         background: #111;
+         border-radius: 10px;
+         box-shadow: inset 0 0 5px rgba(170, 28, 146, 0.5);
+      }
+
+      ::-webkit-scrollbar-thumb {
+         background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+         border-radius: 10px;
+         box-shadow: 0 0 10px rgba(170, 28, 146, 1), 0 0 20px rgba(77, 51, 149, 1);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+         filter: brightness(1.2);
+         box-shadow: 0 0 15px rgba(170, 28, 146, 1), 0 0 25px rgba(77, 51, 149, 1);
+      }
+
+      body {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+      }
+
+      .hiddenBody {
+         overflow: hidden;
+      }
+
+      .hidden {
+         /* transition: 2s ease opacity; */
+         opacity: 0;
+         /* background-color: black; */
+      }
+
+      .hiddenBlackFilter {
+         transition: 4s ease opacity;
+         opacity: 0;
+         background-color: black !important;
+      }
+
+      .hiddenTitle {
+         display: none;
+      }
+
+      .decal {
+         right: 24px !important;
+      }
+
+      .bg-video {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         z-index: -2;
+         background: #AA1C92;
+         background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+      }
+
+      .overlay {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: rgba(0, 0, 0, 0.6);
+         z-index: -1;
+      }
+
+      #title {
+
+         /* width: 500px; */
+
+         width: calc(100% / 3);
+
+         filter:
+            drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
+            /* léger violet */
+            drop-shadow(0 0 40px rgba(170, 28, 146, 0.4));
+         /* très subtil */
+      }
+
+      h1 {
+         font-size: 5rem;
+         padding: 30px;
+         padding-top: 70px;
+         margin: 30px;
+         text-align: center;
+      }
+
+      h2 {
+         font-size: 3rem;
+         white-space: nowrap;
+         text-align: center;
+      }
+
+      h3 {
+         text-align: center;
+         margin-bottom: 20px;
+      }
+
+      section {
+         width: 100%;
+      }
+
+      /* Description */
+
+      .italic {
+         font-style: italic;
+      }
+
+      section.description {
+         padding: 50px 200px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         gap: 40px;
+         line-height: 25px;
+      }
+
+      section.description ul li {
+         margin-left: 50px;
+      }
+
+      /* Horaire */
+      section.horaires {
+         display: flex;
+         flex-direction: column;
+         gap: 70px;
+         align-items: center;
+         padding: 35px;
+      }
+
+      section.horaires table,
+      section.horaires th,
+      section.horaires td {
+         border-collapse: collapse;
+         padding: 15px;
+         width: min-content;
+      }
+
+      section.horaires tr th,
+      section.horaires tr td {
+         border-left: 2px solid #fff;
+      }
+
+      section.horaires tr th:first-child,
+      section.horaires tr td:first-child {
+         border-left: none !important;
+      }
+
+      tr {
+         white-space: nowrap;
+      }
+
+      /* Reseau */
+      section.reseau {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         gap: 80px;
+         padding-bottom: 100px;
+      }
+
+      section.reseau .content {
+         display: flex;
+         justify-content: center;
+         width: 100%;
+         gap: 150px;
+         flex-wrap: wrap;
+      }
+
+      section.reseau .content .field {
+         display: flex;
+         align-items: center;
+         gap: 10px;
+         text-decoration: none;
+         font-size: 22px;
+      }
+
+      section.reseau .content .field:hover {
+         background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         background-clip: text;
+         text-fill-color: transparent;
+      }
+
+      section.reseau .content .logo svg {
+         width: 35px;
+         height: 35px;
+      }
+
+      section.reseau .content .field:hover .logo svg path {
+         fill: url(#gradViolet) !important;
+      }
+
+      section.reseau .content .field:hover .logo.stroke svg path,
+      section.reseau .content .field:hover .logo.stroke svg rect {
+         fill: none !important;
+         stroke: url(#gradViolet) !important;
+      }
+
+      section.reseau p {
+         font-size: 18px;
+      }
+
+      /* formAdhesion */
+      section.formAdhesion {
+         position: relative;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         padding-top: 70px;
+         padding-bottom: 80px;
+      }
+
+      section.formAdhesion::before {
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background: url('./manette.png') center/cover no-repeat;
+         opacity: 0.3;
+         /* change la valeur ici */
+         z-index: -1;
+
+      }
+
+      
+
+      section.formAdhesion form {
+         display: flex;
+         flex-direction: column;
+         gap: 35px;
+         padding: 60px 0 20px 0;
+         border-radius: 10px;
+         width: 380px;
+      }
+
+      section.formAdhesion h2 {
+         text-align: center;
+         margin-bottom: 20px;
+      }
+
+      section.formAdhesion .field {
+         position: relative;
+         width: 100%;
+      }
+
+      section.formAdhesion .field input {
+         width: 100%;
+         padding: 13px;
+         font-size: 0.9rem;
+         border: none;
+         border-bottom: 1px solid #ccc;
+         border-radius: 5px;
+         outline: none;
+         background: transparent;
+         background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         background-clip: text;
+         text-fill-color: transparent;
+      }
+
+      section.formAdhesion .field label {
+         position: absolute;
+         left: 10px;
+         top: 10px;
+         pointer-events: none;
+         transition: 0.2s ease;
+         font-size: 0.9rem;
+         padding: 0 4px;
+      }
+
+      section.formAdhesion .field input:focus+label,
+      section.formAdhesion .field input:not(:placeholder-shown)+label,
+      section.formAdhesion .field input:hover+label {
+         top: -8px;
+         font-size: 0.9rem;
+         background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         background-clip: text;
+         text-fill-color: transparent;
+      }
+
+      section.formAdhesion select {
+         width: 100%;
+         padding: 10px;
+         font-size: 0.9rem;
+         border: none;
+         border-bottom: 1px solid #ccc;
+         border-radius: 5px;
+         background: transparent;
+         outline: none;
+         cursor: pointer;
+      }
+
+      section.formAdhesion select option {
+         color: #AA1C92;
+      }
+
+      section.formAdhesion select:hover {
+         background: linear-gradient(45deg, #aa1c92 0%, #4d3395 100%);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         background-clip: text;
+         text-fill-color: transparent;
+      }
+
+      section.formAdhesion button {
+         padding: 10px;
+         margin-top: 40px;
+         font-size: 1rem;
+         background-color: transparent;
+         color: white;
+         border: none;
+         border-bottom: 2px solid #ccc;
+         border-radius: 5px;
+         cursor: pointer;
+         backdrop-filter: blur(0px);
+         transition: backdrop-filter 0.2s ease, background 0.2s ease;
+      }
+
+      section.formAdhesion button:hover {
+         background-color: #cccccc1c;
+         backdrop-filter: blur(12px);
+         background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         background-clip: text;
+         text-fill-color: transparent;
+      }
+
+      /* FullScreenMode */
+      #screen {
+         width: 40px;
+         height: 40px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border-radius: 10px;
+         cursor: pointer;
+         position: fixed;
+         right: 14px;
+         bottom: 20px;
+         backdrop-filter: blur(22px);
+         transition: backdrop-filter 0.3s, background-color 0.3s;
+      }
+
+      #screen:hover {
+         backdrop-filter: blur(100px);
+         background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      #screen:hover {
+         backdrop-filter: blur(12px);
+      }
+
+      #screen svg {
+         position: absolute;
+         height: 35px;
+         width: 35px;
+      }
+
+      #screen:hover .mode svg path {
+         stroke: url(#gradViolet) !important;
+      }
+
+      #screen div {
+         position: absolute;
+         display: flex;
+         width: 100%;
+         height: 100%;
+         opacity: 0;
+         align-items: center;
+         justify-content: center;
+         transition: opacity 0.3s ease;
+      }
+
+      #screen div.actif {
+         opacity: 1;
+      }
+
+      .tbU {
+         display: block;
+      }
+
+      .tbD {
+         display: none;
+      }
+
+      /* RESPONSIVE DESIGN */
+      @media screen and (max-width: 1650px) {
+
+         .tbU {
+            display: none;
+         }
+
+         .tbD {
+            display: block;
+         }
+
+      }
+
+      @media screen and (max-width: 980px) {
+
+         h2 {
+            width: 100%;
+            white-space: wrap !important;
+         }
+      }
+
+
+      /* Tablettes (768px et moins) */
+      @media screen and (max-width: 768px) {
+         h1 {
+            font-size: 3.5rem;
+            padding: 20px;
+            padding-top: 50px;
+            margin: 20px;
+         }
+
+         h2 {
+            font-size: 2rem;
+            white-space: normal;
+         }
+
+         /* Description responsive */
+         section.description {
+            padding: 30px 50px;
+            gap: 30px;
+            line-height: 22px;
+         }
+
+         section.description ul li {
+            margin-left: 30px;
+         }
+
+         /* Horaires responsive */
+         section.horaires {
+            gap: 50px;
+            padding: 25px;
+         }
+
+         section.horaires table {
+            font-size: 0.8rem;
+         }
+
+         section.horaires th,
+         section.horaires td {
+            padding: 10px 8px;
+         }
+
+         /* Réseaux responsive */
+         section.reseau {
+            gap: 60px;
+            padding-bottom: 80px;
+         }
+
+         section.reseau .content {
+            gap: 80px;
+         }
+
+         section.reseau .content .field {
+            font-size: 18px;
+         }
+
+         section.reseau .content .logo svg {
+            width: 30px;
+            height: 30px;
+         }
+
+         section.reseau p {
+            font-size: 16px;
+         }
+
+         /* Formulaire responsive */
+         section.formAdhesion form {
+            width: 320px;
+            padding: 40px 20px 20px 20px;
+         }
+      }
+
+      /* Smartphones (480px et moins) */
+      @media screen and (max-width: 480px) {
+         h1 {
+            font-size: 2.5rem;
+            padding: 15px;
+            padding-top: 40px;
+            margin: 15px;
+         }
+
+         h2 {
+            font-size: 1.5rem;
+         }
+
+         /* Description responsive mobile */
+         section.description {
+            padding: 20px 25px;
+            gap: 25px;
+            line-height: 20px;
+         }
+
+         section.description ul li {
+            margin-left: 20px;
+            font-size: 0.9rem;
+         }
+
+         section.description p {
+            font-size: 0.9rem;
+         }
+
+         /* Horaires responsive mobile */
+         section.horaires {
+            gap: 40px;
+            padding: 20px 10px;
+         }
+
+         section.horaires table {
+            font-size: 0.7rem;
+         }
+
+         section.horaires th,
+         section.horaires td {
+            padding: 8px 6px;
+         }
+
+         /* Réseaux responsive mobile */
+         section.reseau {
+            gap: 50px;
+            padding-bottom: 60px;
+         }
+
+         section.reseau .content {
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+         }
+
+         section.reseau .content .field {
+            font-size: 16px;
+            justify-content: center;
+         }
+
+         section.reseau .content .logo svg {
+            width: 28px;
+            height: 28px;
+         }
+
+         section.reseau p {
+            font-size: 14px;
+         }
+
+         /* Formulaire responsive mobile */
+         section.formAdhesion {
+            padding-top: 50px;
+            padding-bottom: 60px;
+         }
+
+         section.formAdhesion form {
+            width: 280px;
+            gap: 30px;
+            padding: 30px 15px 15px 15px;
+         }
+
+         section.formAdhesion .field input,
+         section.formAdhesion select {
+            padding: 10px;
+            font-size: 0.8rem;
+         }
+
+         section.formAdhesion .field label {
+            font-size: 0.8rem;
+         }
+
+         section.formAdhesion button {
+            padding: 8px;
+            font-size: 0.9rem;
+            margin-top: 30px;
+         }
+
+         /* Bouton fullscreen mobile */
+         #screen {
+            width: 35px;
+            height: 35px;
+            right: 10px;
+            bottom: 15px;
+         }
+
+         #screen svg {
+            height: 30px;
+            width: 30px;
+         }
+      }
+
+      /* Très petits smartphones (320px et moins) */
+      @media screen and (max-width: 320px) {
+         h1 {
+            font-size: 2rem;
+            padding: 10px;
+            margin: 10px;
+         }
+
+         h2 {
+            font-size: 1.3rem;
+         }
+
+         section.description {
+            padding: 15px 20px;
+            gap: 20px;
+         }
+
+         section.horaires table {
+            font-size: 0.6rem;
+         }
+
+         section.horaires th,
+         section.horaires td {
+            padding: 6px 4px;
+         }
+
+         section.formAdhesion form {
+            width: 250px;
+         }
+
+         section.reseau .content .field {
+            font-size: 14px;
+         }
+
+         section.reseau p {
+            font-size: 12px;
+         }
+      }
+
+      /* Orientation paysage pour mobiles */
+      @media screen and (max-width: 768px) and (orientation: landscape) {
+         h1 {
+            font-size: 2.5rem;
+            padding: 10px;
+            margin: 10px;
+         }
+
+         section.description {
+            padding: 20px 40px;
+         }
+
+         section.horaires {
+            gap: 30px;
+         }
+
+         section.formAdhesion {
+            padding-top: 40px;
+            padding-bottom: 40px;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <video autoplay loop class="bg-video">
+      <source src="Full Trailer.mp4" type="video/mp4">
+   </video>
+
+   <div class="overlay" id="blackFilter"></div>
+
+   <img src="./logo.png" alt="" id="title">
+
+   <section class="description">
+      <h3>Arcade Tour – L'arcade qui vient à vous !</h3>
+
+      <p>Arcade Tour est une association créée par un passionné de jeux vidéo, avec pour mission de faire voyager
+         petits et grands dans l'univers des bornes d'arcade. Notre objectif : partager la magie du
+         <span class="italic">rétrogaming</span> et redonner vie aux plus grands classiques, dans une ambiance
+         conviviale et
+         festive.
+      </p>
+
+      <p>Nous mettons à votre disposition une <span class="italic">remorque entièrement équipée</span> de <span
+            class="italic">10 bornes de
+            jeux rétro</span>, pour jouer seul, à deux ou en multijoueur, avec des configurations pouvant accueillir
+         jusqu'à <span class="italic">26 joueurs simultanément</span>.</p>
+
+      <h3>Nos installations comprennent :</h3>
+      <ul>
+         <li><span class="italic">8 bornes 2 joueurs</span> : 5 équipées de systèmes Pandorabox et 3 avec systèmes
+            arcade
+            classiques.</li>
+         <li><span class="italic">1 borne 4 joueurs</span> avec écran géant et console Dreamcast pour les jeux de
+            groupe.</li>
+         <li><span class="italic">1 borne verticale</span> (écran 52 in 1) pour les amateurs de shoot'em up et de jeux
+            old-school.</li>
+         <li><span class="italic">1 console mini Playstation</span> pour deux joueurs.</li>
+         <li>Des <span class="italic">bartops et bornes compactes</span> pour compléter l'expérience, accueillant
+            jusqu'à 12
+            joueurs supplémentaires.</li>
+      </ul>
+
+      <p>Que ce soit pour un anniversaire, un mariage, une fête associative, un événement d'entreprise ou un
+         festival, <span class="italic">nous apportons l'arcade directement chez vous</span>. Ambiance rétro garantie,
+         rires et
+         compétition au rendez-vous !</p>
+   </section>
+
+
+   <section class="horaires">
+      <h2>Horaires d'ouverture</h2>
+      <table class="tbU">
+         <thead>
+            <tr>
+               <th>Lundi</th>
+               <th>Mardi</th>
+               <th>Mercredi</th>
+               <th>Jeudi</th>
+               <th>Vendredi</th>
+               <th>Samedi</th>
+               <th>Dimanche</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>09:30 - 12:00</td>
+               <td>09:30 - 12:00</td>
+               <td>09:30 - 12:00</td>
+               <td>09:30 - 12:00</td>
+               <td>09:30 - 12:00</td>
+               <td>09:30 - 12:00</td>
+               <td>09:30 - 12:00</td>
+            </tr>
+            <tr>
+               <td>13:30 - 19:00</td>
+               <td>13:30 - 19:00</td>
+               <td>13:30 - 19:00</td>
+               <td>13:30 - 19:00</td>
+               <td>13:30 - 19:00</td>
+               <td>13:30 - 19:00</td>
+               <td>13:30 - 19:00</td>
+            </tr>
+         </tbody>
+      </table>
+
+      <table class="tbD">
+         <tbody>
+            <tr>
+               <th>Lundi</th>
+            </tr>
+            <tr>
+
+               <td>09:30 - 12:00</td>
+            </tr>
+            <tr>
+
+               <td>13:30 - 19:00</td>
+            </tr>
+            <tr>
+               <th style="border-top: 2px solid white;">Mardi</th>
+            </tr>
+            <tr>
+
+               <td>09:30 - 12:00</td>
+            </tr>
+            <tr>
+
+               <td>13:30 - 19:00</td>
+            </tr>
+            <tr>
+               <th style="border-top: 2px solid white;">Mercredi</th>
+            </tr>
+            <tr>
+
+               <td>09:30 - 12:00</td>
+            </tr>
+            <tr>
+
+               <td>13:30 - 19:00</td>
+            </tr>
+            <tr>
+               <th style="border-top: 2px solid white;">Jeudi</th>
+            </tr>
+            <tr>
+
+               <td>09:30 - 12:00</td>
+            </tr>
+            <tr>
+
+               <td>13:30 - 19:00</td>
+            </tr>
+            <tr>
+               <th style="border-top: 2px solid white;">Vendredi</th>
+            </tr>
+            <tr>
+
+               <td>09:30 - 12:00</td>
+            </tr>
+            <tr>
+
+               <td>13:30 - 19:00</td>
+            </tr>
+            <tr>
+               <th style="border-top: 2px solid white;">Samedi</th>
+            </tr>
+            <tr>
+
+               <td>09:30 - 12:00</td>
+            </tr>
+            <tr>
+
+               <td>13:30 - 19:00</td>
+            </tr>
+            <tr>
+               <th style="border-top: 2px solid white;">Dimanche</th>
+            </tr>
+            <tr>
+
+               <td>09:30 - 12:00</td>
+            </tr>
+            <tr>
+
+               <td>13:30 - 19:00</td>
+            </tr>
+         </tbody>
+      </table>
+   </section>
+
+   <section class="formAdhesion">
+      <h2>Espace Adhésion</h2>
+
+      <form action="" id="paymentForm">
+         <div class="field">
+            <input type="text" id="nom" name="nom" placeholder="">
+            <label for="nom">Nom</label>
+         </div>
+         <div class="field">
+            <input type="text" id="prenom" name="prenom" placeholder="">
+            <label for="prenom">Prénom</label>
+         </div>
+         <div class="field">
+            <input type="email" id="mail" name="mail" placeholder="">
+            <label for="mail">Mail</label>
+         </div>
+         <div class="field">
+            <input type="tel" id="tel" name="tel" placeholder="">
+            <label for="tel">Téléphone</label>
+         </div>
+
+         <div class="field">
+            <select id="adhesion" name="adhesion">
+               <option value="">Type d'adhésion</option>
+               <option value="Annuel Adulte - 50€">Annuel Adulte - 50€</option>
+               <option value="Annuel Enfant - 30€">Annuel Enfant - 30€</option>
+               <option value="Annuel Famille - 90€">Annuel Famille - 90€</option>
+               <option value="1 Journée - 10€">1 Journée - 10€</option>
+            </select>
+         </div>
+
+         <button type="submit">Payer</button>
+      </form>
+   </section>
+
+   <section class="reseau">
+      <h2>Réseaux</h2>
+
+      <div class="content">
+         <a href="https://www.facebook.com/share/17ErZoRGjC/?mibextid=wwXIfr" target="_blank" class="field">
+            <div class="logo">
+               <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                     <linearGradient id="gradWhite" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:white;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:white;stop-opacity:1" />
+                     </linearGradient>
+                     <linearGradient id="gradViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(170,28,146,1)" />
+                        <stop offset="100%" style="stop-color:rgba(77,51,149,1)" />
+                     </linearGradient>
+                  </defs>
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                     d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H15V13.9999H17.0762C17.5066 13.9999 17.8887 13.7245 18.0249 13.3161L18.4679 11.9871C18.6298 11.5014 18.2683 10.9999 17.7564 10.9999H15V8.99992C15 8.49992 15.5 7.99992 16 7.99992H18C18.5523 7.99992 19 7.5522 19 6.99992V6.31393C19 5.99091 18.7937 5.7013 18.4813 5.61887C17.1705 5.27295 16 5.27295 16 5.27295C13.5 5.27295 12 6.99992 12 8.49992V10.9999H10C9.44772 10.9999 9 11.4476 9 11.9999V12.9999C9 13.5522 9.44771 13.9999 10 13.9999H12V21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z"
+                     fill="url(#gradWhite)" />
+               </svg>
+            </div>
+            <p>Facebook</p>
+         </a>
+
+         <a href="" class="field">
+            <div class="logo">
+               <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                     d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                     fill="url(#gradWhite)" />
+                  <path
+                     d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                     fill="url(#gradWhite)" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                     d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z"
+                     fill="url(#gradWhite)" />
+               </svg>
+            </div>
+            <p>Instagram</p>
+         </a>
+
+         <a href="mailto:arcadetour38@gmail.com" class="field">
+            <div class="logo stroke">
+               <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="url(#gradWhite)"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <rect x="3" y="5" width="18" height="14" rx="2" stroke="url(#gradWhite)" stroke-width="2"
+                     stroke-linecap="round" />
+               </svg>
+            </div>
+            <p>eMail</p>
+         </a>
+
+         <a href="tel:+33652985786" class="field">
+            <div class="logo">
+               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                  <path
+                     d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"
+                     fill="url(#gradWhite)" />
+               </svg>
+            </div>
+            <p>Telephone</p>
+         </a>
+      </div>
+   </section>
+
+   <div id="screen">
+      <div class="mode fullScreen actif">
+         <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+               <linearGradient id="gradWhite2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:white;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:white;stop-opacity:1" />
+               </linearGradient>
+               <linearGradient id="gradViolet2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:rgba(170,28,146,1)" />
+                  <stop offset="100%" style="stop-color:rgba(77,51,149,1)" />
+               </linearGradient>
+            </defs>
+            <path
+               d="M6 15V16C6 17.1046 6.89543 18 8 18H9M18 15V16C18 17.1046 17.1046 18 16 18H15M6 9V8C6 6.89543 6.89543 6 8 6H9M18 9V8C18 6.89543 17.1046 6 16 6H15"
+               stroke="url(#gradWhite2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+         </svg>
+      </div>
+      <div class="mode exitFullScreen">
+         <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+               <linearGradient id="gradWhite3" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:white;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:white;stop-opacity:1" />
+               </linearGradient>
+               <linearGradient id="gradViolet3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:rgba(170,28,146,1)" />
+                  <stop offset="100%" style="stop-color:rgba(77,51,149,1)" />
+               </linearGradient>
+            </defs>
+            <path
+               d="M9.00001 18.0001L9.00001 17.0001C9.00001 15.8956 8.10458 15.0001 7.00001 15.0001H6.00001M15 18.0001V17.0001C15 15.8956 15.8954 15.0001 17 15.0001L18 15.0001M9 6.00012L9 7.00012C9 8.10469 8.10457 9.00012 7 9.00012L6 9.00012M15 6.00014L15 7.00014C15 8.10471 15.8954 9.00014 17 9.00014L18 9.00014"
+               stroke="url(#gradWhite3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+         </svg>
+      </div>
+   </div>
+
+</body>
+
+<script>
+   const fullScreenMode = document.getElementById("screen")
+   const Sections = document.querySelectorAll("section")
+   const title = document.getElementById("title")
+   const blackFilter = document.getElementById("blackFilter")
+
+   const paymentForm = document.getElementById("paymentForm")
+
+   console.log(Sections)
+
+   fullScreenMode.addEventListener("click", (e) => {
+      console.log("click")
+
+      console.log(fullScreenMode.children)
+
+      Array.from(fullScreenMode.children).forEach(child => {
+         child.classList.toggle("actif")
+      });
+
+      Sections.forEach(section => {
+         console.log(section)
+         section.classList.toggle("hidden")
+      })
+
+      title.classList.toggle("hiddenTitle")
+
+      fullScreenMode.classList.toggle("decal")
+
+      blackFilter.classList.toggle("hiddenBlackFilter")
+
+      document.body.classList.toggle("hiddenBody")
+
+   })
+
+   paymentForm.addEventListener("submit", (e) => {
+      e.preventDefault()
+
+      const formData = new FormData(paymentForm);
+      const data = {};
+      formData.forEach((value, key) => {
+         data[key] = value;
+      });
+
+      console.log('Données du formulaire :', data);
+
+   })
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,21 @@
+{
+  "width": 332,
+  "height": 255,
+  "cx": [
+    [ "PASSWORD", 187 ],
+    [ "TYPE_ADHESION", 67 ],
+    [ "ADHERE", 187 ],
+    [ "USER", 286 ]
+  ],
+  "cy": [
+    [ "PASSWORD", 35 ],
+    [ "TYPE_ADHESION", 166 ],
+    [ "ADHERE", 166 ],
+    [ "USER", 166 ]
+  ],
+  "shift": [
+    [ "ADHERE,TYPE_ADHESION,0", 0 ],
+    [ "ADHERE,USER,0", 0 ]
+  ],
+  "ratio": []
+}
