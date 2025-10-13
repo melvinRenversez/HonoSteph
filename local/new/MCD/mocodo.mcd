@@ -1,6 +1,0 @@
-PASSWORD: libelle
-
-TYPE_ADHESION: id, libelle, prix, description, duree
-adhere, 1N TYPE_ADHESION, 0N USER: payed
-USER: mail, uuid, nom, prenom, naissance, tel, password
-

@@ -19,6 +19,8 @@
 
       /* Couleurs : (thumb, track) */
       scrollbar-color: rgba(170, 28, 146, 1) #111;
+
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
    }
 
    ::-webkit-scrollbar {
@@ -118,6 +120,13 @@
 
    section.logo img {
       width: 350px;
+
+            filter:
+            drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
+            /* léger violet */
+            drop-shadow(0 0 40px rgba(170, 28, 146, 0.4));
+         /* très subtil */
+
    }
 
    section.Presentation p {
@@ -188,6 +197,8 @@
       /* background: green; */
 
       width: 40%;
+
+      min-width: 400px;
    }
 
    section.inscription form .field {
@@ -320,6 +331,12 @@
       margin-bottom: 30px;
    }
 
+   .tel{
+      font-size: 44px;
+      text-decoration: none;
+      color: white;
+   }
+
    .reseau .field {
       display: flex;
       align-items: center;
@@ -398,7 +415,7 @@
    <div class="content">
 
       <section class="logo">
-         <img src="./logo.png" alt="">
+         <img src="./assets/logo.png" alt="">
       </section>
 
       <section class="Presentation">
@@ -457,34 +474,35 @@
 
          <table>
             <thead>
-               <tr>
-                  <th>Type d'adhesion</th>
-                  <th>Prix</th>
-                  <th>Condition</th>
-               </tr>
-            </thead>
+                  <tr>
+                     <th>Type d'adhesion</th>
+                     <th>Prix</th>
+                     <th>Condition</th>
+                  </tr>
+               </thead>
 
-            <tbody>
-               <tr>
-                  <td>Annuel adulte</td>
-                  <td>50€</td>
-                  <td>Reserve aux plus de 12ans</td>
-               </tr>
-               <tr>
-                  <td>Annuel enfant</td>
-                  <td>30€</td>
-                  <td>Reserve aux moins de 12ans</td>
-               </tr>
-               <tr>
-                  <td>Annuel famille</td>
-                  <td>90€</td>
-                  <td>4 personne maximum</td>
-               </tr>
-               <tr>
-                  <td>Pass 1 jour</td>
-                  <td>10€</td>
-                  <td>Accessible a tout le monde</td>
-               </tr>
+               <tbody>
+
+                  <?php
+                     include("php/database.php");
+
+                     $query = "select libelle, prix, description from typeAdhesion;";
+                     $result = $db->query($query);
+
+                     $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
+
+                     foreach ($rowsAdhesion as $row) {
+                        echo "<tr>";
+                        echo "<td>" . $row["libelle"] . "</td>";
+                        echo "<td>" . $row["prix"] . "€</td>";
+                        echo "<td>" . $row["description"] . "</td>";
+                        echo "</tr>";
+                     }
+
+
+                  ?>
+
+               </tbody>
          </table>
       </section>
 
@@ -537,10 +555,15 @@
 
             <select name="" id="">
                <option value="">Type d'adhesion</option>
-               <option value="Annuel Adulte - 50€">Annuel Adulte - 50€</option>
-               <option value="Annuel Enfant - 30€">Annuel Enfant - 30€</option>
-               <option value="Annuel Famille - 90€">Annuel Famille - 90€</option>
-               <option value="1 Journée - 10€">1 Journée - 10€</option>
+
+               <?php 
+
+                  foreach ($rowsAdhesion as $row) {
+                     echo "<option>" . $row["libelle"] . " - " . $row["prix"] . "€</option>";
+                  };
+
+?>
+
             </select>
 
             <button>Envoyer mon inscription</button>
@@ -558,9 +581,9 @@
 
          <p>
 
-         <p>
+         <a class="tel">
             06 52 98 57 86
-         </p>
+               </a>
 
          <p>
             ou
