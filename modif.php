@@ -38,6 +38,8 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
       height: 100dvh;
       display: flex;
 
+      max-height: 100dvh;
+
       flex-direction: column;
    }
 
@@ -98,6 +100,9 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
    section.info {
       display: flex;
       flex: 1;
+      min-height: 0;
+
+      padding-bottom: 20px;
    }
 
    .modif,
@@ -109,6 +114,9 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      min-height: 0;     
+
    }
 
    .content {
@@ -309,13 +317,18 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
    }
 
    .abonnements .content{
-      width: 80%;
+      width: 90%;
 
       justify-content: start;
 
       gap: 30px;
 
+      min-height: 0;   
+
       margin-top: 50px;
+
+      overflow-y: auto;
+      padding: 10px;
    }
 
    .card{
@@ -332,14 +345,56 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
 
       border-radius: 7px;
 
-      height: 150px;
+      min-height: 150px;
 
       display: flex;
       flex-direction: column;
+
+      cursor: pointer;
+      
+      transition: backdrop-filter 0.2s ease, background 0.2s ease, transform 0.2s ease;
+   }
+
+   .card:hover{
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(24px);
+      
+      transform: translateY(-10px);
+
+
    }
 
    .gap{
       flex: 1;
+   }
+
+   .color {
+      position: absolute;
+      top: 5px;
+      right: 15px;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+   }
+
+   .circle {
+      width: 10px;
+      height: 10px;
+
+      border-radius: 100%;
+   }
+
+   .ac .circle{
+      background: green;
+   }
+
+   .in  .circle{
+      background: orange;
+   }
+
+   .dp .circle{
+      background: red;
    }
 
 </style>
@@ -468,22 +523,47 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
 
             <div class="card">
                <h3>Abonnement - Famille anuel</h3>
-               <h4>accheter le 30/11/2022</h4>
+               <h4>Acheter le 30/11/2022</h4>
 
                <div class="gap"></div>
 
                <p>Valable jusqu'au 30/11/2023</p>
 
+               <div class="color ac">
+                  <span>Actif</span>
+                  <div class="circle"></div>
+               </div>
+
             </div>
 
             <div class="card">
                <h3>Abonnement - Famille anuel</h3>
-               <h4>ajouter le 30/11/2022</h4>
+               <h4>Ajouter le 30/11/2022</h4>
 
                <div class="gap"></div>
 
-               <p>en attente de payant</p>
+               <p>En attente de payant</p>
                <p>Le payement se fait sur place</p>
+
+               <div class="color in">
+                  <span>Inactif</span>
+                  <div class="circle"></div>
+               </div>
+               
+            </div>
+            <div class="card">
+               <h3>Abonnement - Famille anuel</h3>
+               <h4>Ajouter le 30/11/2021</h4>
+
+               <div class="gap"></div>
+
+               
+               <p>Fini le 30/11/2022 </p>
+
+               <div class="color dp">
+                  <span>Depasser</span>
+                  <div class="circle"></div>
+               </div>
                
             </div>
 

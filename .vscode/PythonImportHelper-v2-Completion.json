@@ -1,0 +1,125 @@
+[
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "qrcode",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "qrcode",
+        "description": "qrcode",
+        "detail": "qrcode",
+        "documentation": {}
+    },
+    {
+        "label": "StyledPilImage",
+        "importPath": "qrcode.image.styledpil",
+        "description": "qrcode.image.styledpil",
+        "isExtraImport": true,
+        "detail": "qrcode.image.styledpil",
+        "documentation": {}
+    },
+    {
+        "label": "RoundedModuleDrawer",
+        "importPath": "qrcode.image.styles.moduledrawers",
+        "description": "qrcode.image.styles.moduledrawers",
+        "isExtraImport": true,
+        "detail": "qrcode.image.styles.moduledrawers",
+        "documentation": {}
+    },
+    {
+        "label": "SolidFillColorMask",
+        "importPath": "qrcode.image.styles.colormasks",
+        "description": "qrcode.image.styles.colormasks",
+        "isExtraImport": true,
+        "detail": "qrcode.image.styles.colormasks",
+        "documentation": {}
+    },
+    {
+        "label": "MCD_FILE",
+        "kind": 5,
+        "importPath": "MCD.live",
+        "description": "MCD.live",
+        "peekOfCode": "MCD_FILE = \"mocodo.mcd\"\n# Dossier où se trouve le fichier\nWORK_DIR = r\"./\"\nprint(\"=== Live Mocodo Server ===\")\nprint(f\"Surveillance du fichier : {MCD_FILE}\")\nprint(\"Appuie sur Ctrl+C pour arrêter.\\n\")\ni = 0\nwhile True:\n   try:\n      # Exécuter Mocodo",
+        "detail": "MCD.live",
+        "documentation": {}
+    },
+    {
+        "label": "WORK_DIR",
+        "kind": 5,
+        "importPath": "MCD.live",
+        "description": "MCD.live",
+        "peekOfCode": "WORK_DIR = r\"./\"\nprint(\"=== Live Mocodo Server ===\")\nprint(f\"Surveillance du fichier : {MCD_FILE}\")\nprint(\"Appuie sur Ctrl+C pour arrêter.\\n\")\ni = 0\nwhile True:\n   try:\n      # Exécuter Mocodo\n      i += 1\n      print(f\"[INFO] {i} Génération du schéma...\")",
+        "detail": "MCD.live",
+        "documentation": {}
+    },
+    {
+        "label": "i",
+        "kind": 5,
+        "importPath": "MCD.live",
+        "description": "MCD.live",
+        "peekOfCode": "i = 0\nwhile True:\n   try:\n      # Exécuter Mocodo\n      i += 1\n      print(f\"[INFO] {i} Génération du schéma...\")\n      subprocess.run(\n         [\"python\", \"-m\", \"mocodo\", \"--input\", MCD_FILE, \"--colors\", \"brewer+3\"],\n         cwd=WORK_DIR,\n         capture_output=True,",
+        "detail": "MCD.live",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 5,
+        "importPath": "QRCode.main",
+        "description": "QRCode.main",
+        "peekOfCode": "uuid = \"01234567-89ab-cdef-0123-456789abcdef\"\nqr = qrcode.QRCode(\n    version=1,  # taille du QR code : 1 = 21x21, 2 = 25x25, etc.\n    error_correction=qrcode.constants.ERROR_CORRECT_H,  # tolérance d'erreurs élevée\n    box_size=10,  # taille d'un carré\n    border=4,    # épaisseur de la bordure\n)\nqr.add_data(uuid)\nqr.make(fit=True)\n# Personnalisation du style",
+        "detail": "QRCode.main",
+        "documentation": {}
+    },
+    {
+        "label": "qr",
+        "kind": 5,
+        "importPath": "QRCode.main",
+        "description": "QRCode.main",
+        "peekOfCode": "qr = qrcode.QRCode(\n    version=1,  # taille du QR code : 1 = 21x21, 2 = 25x25, etc.\n    error_correction=qrcode.constants.ERROR_CORRECT_H,  # tolérance d'erreurs élevée\n    box_size=10,  # taille d'un carré\n    border=4,    # épaisseur de la bordure\n)\nqr.add_data(uuid)\nqr.make(fit=True)\n# Personnalisation du style\nimg = qr.make_image(",
+        "detail": "QRCode.main",
+        "documentation": {}
+    },
+    {
+        "label": "img",
+        "kind": 5,
+        "importPath": "QRCode.main",
+        "description": "QRCode.main",
+        "peekOfCode": "img = qr.make_image(\n    image_factory=StyledPilImage,\n    color_mask=SolidFillColorMask(back_color=(52, 33, 130), front_color=(0,0,0))  # couleur avant/arrière\n)\nfilename = f\"custom_qr.png\"\nimg.save(filename)",
+        "detail": "QRCode.main",
+        "documentation": {}
+    },
+    {
+        "label": "filename",
+        "kind": 5,
+        "importPath": "QRCode.main",
+        "description": "QRCode.main",
+        "peekOfCode": "filename = f\"custom_qr.png\"\nimg.save(filename)",
+        "detail": "QRCode.main",
+        "documentation": {}
+    }
+]
