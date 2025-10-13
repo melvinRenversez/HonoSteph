@@ -1,7 +1,7 @@
 
 TYPE_ADHESION: id, libelle, prix, description, duree
 adhere, 0N TYPE_ADHESION, 0N USER: payed
-USER: mail, uuid, nom, prenom, naissance, tel
+USER: uuid, nom, prenom, mail, naissance, tel
 
 
 ADMPASS: password

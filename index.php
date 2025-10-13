@@ -1,3 +1,15 @@
+<?php 
+
+
+include("php/database.php");
+
+$query = "select libelle, prix, description from typeAdhesion;";
+$result = $db->query($query);
+
+$rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -369,10 +381,15 @@
       position: fixed;
       top: 20px;
       right: 20px;
+      
       color: #fff;
       font-size: 20px;
+      
       cursor: pointer;
+
       z-index: 100000;
+
+      text-decoration: none;
 
       padding: 12px;
 
@@ -401,9 +418,9 @@
 
 <body>
 
-   <div class="modif">
+   <a class="modif" href="./login.php">
       Modifier mon Compte
-   </div>
+</a>
 
 
    <div class="trailer">
@@ -484,13 +501,6 @@
                <tbody>
 
                   <?php
-                     include("php/database.php");
-
-                     $query = "select libelle, prix, description from typeAdhesion;";
-                     $result = $db->query($query);
-
-                     $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
-
                      foreach ($rowsAdhesion as $row) {
                         echo "<tr>";
                         echo "<td>" . $row["libelle"] . "</td>";
