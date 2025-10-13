@@ -1,29 +1,31 @@
 {
-  "width": 344,
-  "height": 296,
+  "width": 267,
+  "height": 558,
   "cx": [
     [ "TYPE_ADHESION", 67 ],
-    [ "ADHERE", 187 ],
-    [ "USER", 297 ],
-    [ "ADMPASS", 67 ],
-    [ "PASSWORD", 187 ],
-    [ "IDENTIFIER", 297 ],
-    [ "FAMILLE", 187 ]
+    [ "ADHERE", 67 ],
+    [ "FAMILLE", 67 ],
+    [ "PARENER", 67 ],
+    [ "COMPOSER", 197 ],
+    [ "COMPTE", 67 ],
+    [ "MENBRE_FAMILLE", 197 ]
   ],
   "cy": [
-    [ "TYPE_ADHESION", 80 ],
-    [ "ADHERE", 80 ],
-    [ "USER", 80 ],
-    [ "ADMPASS", 202 ],
-    [ "PASSWORD", 202 ],
-    [ "IDENTIFIER", 202 ],
-    [ "FAMILLE", 270 ]
+    [ "TYPE_ADHESION", 71 ],
+    [ "ADHERE", 184 ],
+    [ "FAMILLE", 270 ],
+    [ "PARENER", 356 ],
+    [ "COMPOSER", 356 ],
+    [ "COMPTE", 478 ],
+    [ "MENBRE_FAMILLE", 478 ]
   ],
   "shift": [
     [ "ADHERE,TYPE_ADHESION,0", 0 ],
-    [ "ADHERE,USER,0", 0 ],
-    [ "IDENTIFIER,USER,0", 0 ],
-    [ "IDENTIFIER,PASSWORD,0", 0 ]
+    [ "ADHERE,FAMILLE,0", 0 ],
+    [ "PARENER,COMPTE,0", 0 ],
+    [ "PARENER,FAMILLE,0", 0 ],
+    [ "COMPOSER,FAMILLE,0", 0 ],
+    [ "COMPOSER,MENBRE_FAMILLE,0", 0 ]
   ],
   "ratio": []
 }

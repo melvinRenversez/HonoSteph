@@ -1,14 +1,12 @@
 
 TYPE_ADHESION: id, libelle, prix, description, duree
-adhere, 0N TYPE_ADHESION, 0N USER: payed
-USER: uuid, nom, prenom, mail, naissance, tel
 
+adhere, 0N TYPE_ADHESION, 0N FAMILLE
 
-ADMPASS: password
-PASSWORD: password
-identifier, 11 USER, 11 PASSWORD
+FAMILLE: id, pere
 
-FAMILLE: 
+parener, 11 COMPTE, 11 FAMILLE
+composer, 0N FAMILLE, 11 MENBRE_FAMILLE
 
-
-
+COMPTE: uuid, nom, prenom, mail, naissance, tel
+MENBRE_FAMILLE: uuid, nom, prenom, naissance 
