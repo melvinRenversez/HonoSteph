@@ -131,7 +131,7 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
    }
 
    section.logo img {
-      width: 350px;
+      width: 450px;
 
             filter:
             drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
@@ -424,7 +424,7 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
 
 
    <div class="trailer">
-      <video src="./assets/Full Trailer.mp4" autoplay loop muted></video>
+      <video src="./asets/Full Trailer.mp4" autoplay loop muted></video>
    </div>
 
    <div class="overlay"></div>
@@ -591,7 +591,7 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
 
          <p>
 
-         <a class="tel">
+         <a class="tel" href="/tel:0652985786">
             06 52 98 57 86
                </a>
 

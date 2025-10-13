@@ -1,13 +1,14 @@
 {
   "width": 344,
-  "height": 237,
+  "height": 296,
   "cx": [
     [ "TYPE_ADHESION", 67 ],
     [ "ADHERE", 187 ],
     [ "USER", 297 ],
     [ "ADMPASS", 67 ],
     [ "PASSWORD", 187 ],
-    [ "IDENTIFIER", 297 ]
+    [ "IDENTIFIER", 297 ],
+    [ "FAMILLE", 187 ]
   ],
   "cy": [
     [ "TYPE_ADHESION", 80 ],
@@ -15,7 +16,8 @@
     [ "USER", 80 ],
     [ "ADMPASS", 202 ],
     [ "PASSWORD", 202 ],
-    [ "IDENTIFIER", 202 ]
+    [ "IDENTIFIER", 202 ],
+    [ "FAMILLE", 270 ]
   ],
   "shift": [
     [ "ADHERE,TYPE_ADHESION,0", 0 ],
