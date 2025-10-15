@@ -201,7 +201,3 @@ join adhesion_parrainee ap on ap.fk_membre_famille = mf.id
 join type_adhesion ta on ta.id = ap.fk_type_adhesion
 join compte c on c.id = ap.fk_compte
 where mf.uuid = "2e075241-a9ff-11f0-8844-00e04c36042d";
-
-select * from adhesion_parrainee;
-select * from type_adhesion;
-select * from compte;
