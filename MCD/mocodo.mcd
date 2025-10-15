@@ -1,18 +1,16 @@
 
+:
+creer, COMPTE, FAMILLE
+FAMILLE: id, 
+composer, FAMILLE, MENBRE_FAMILLE
 
-TYPE_ADHESION: id, libelle, prix, description, duree
-
-adhere, 0N TYPE_ADHESION, 0N FAMILLE
-
-FAMILLE: id, pere
-
-parener, 11 COMPTE, 11 FAMILLE
-composer, 0N FAMILLE, 11 MENBRE_FAMILLE
-
+PASSWORD: password
+identifier, password, COMPTE
 COMPTE: uuid, nom, prenom, mail, naissance, tel
+MENBRE_FAMILLE: uuid, nom, prenom, naissance
 
 
-
-adhere, 1N TYPE_ADHESION, 1N COMPTE
+:
+addere, COMPTE, TYPE_ADHESION
 TYPE_ADHESION: id, libelle, prix, description, duree
-adhere_parainer, 1N TYPE_ADHESION, 1N MENBRE_FAMILLE, 0N COMPTE 
+adderr_parraine, TYPE_ADHESION, MENBRE_FAMILLE, COMPTE
