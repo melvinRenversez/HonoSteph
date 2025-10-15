@@ -6,11 +6,11 @@ composer, 0N FAMILLE, 11 MENBRE_FAMILLE
 
 PASSWORD: password
 identifier, 11 password, 11 COMPTE
-COMPTE: uuid, nom, prenom, mail, naissance, tel
-MENBRE_FAMILLE: uuid, nom, prenom, naissance
+COMPTE: id, uuid, nom, prenom, mail, naissance, tel
+MENBRE_FAMILLE: id, uuid, nom, prenom, naissance
 
 
 :
-addere, 0N COMPTE, 0N TYPE_ADHESION
+adherer, 0N COMPTE, 0N TYPE_ADHESION
 TYPE_ADHESION: id, libelle, prix, description, duree
 adderr_parraine, 0N TYPE_ADHESION, 0N MENBRE_FAMILLE, 0N COMPTE

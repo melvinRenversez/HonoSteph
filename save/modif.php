@@ -3,7 +3,7 @@
 
 include("php/database.php");
 
-$query = "select libelle, prix, description from typeAdhesion;";
+$query = "select libelle, prix, description from type_adhesion;";
 $result = $db->query($query);
 
 $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
