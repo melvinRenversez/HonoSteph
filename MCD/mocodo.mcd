@@ -1,16 +1,16 @@
 
-:
-creer, COMPTE, FAMILLE
-FAMILLE: id, 
-composer, FAMILLE, MENBRE_FAMILLE
+ADM: password
+creer, 01 COMPTE, 11 FAMILLE
+FAMILLE: id
+composer, 0N FAMILLE, 11 MENBRE_FAMILLE
 
 PASSWORD: password
-identifier, password, COMPTE
+identifier, 11 password, 11 COMPTE
 COMPTE: uuid, nom, prenom, mail, naissance, tel
 MENBRE_FAMILLE: uuid, nom, prenom, naissance
 
 
 :
-addere, COMPTE, TYPE_ADHESION
+addere, 0N COMPTE, 0N TYPE_ADHESION
 TYPE_ADHESION: id, libelle, prix, description, duree
-adderr_parraine, TYPE_ADHESION, MENBRE_FAMILLE, COMPTE
+adderr_parraine, 0N TYPE_ADHESION, 0N MENBRE_FAMILLE, 0N COMPTE

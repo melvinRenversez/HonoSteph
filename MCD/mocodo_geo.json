@@ -1,7 +1,8 @@
 {
   "width": 499,
-  "height": 404,
+  "height": 386,
   "cx": [
+    [ "ADM", 49 ],
     [ "CREER", 159 ],
     [ "FAMILLE", 279 ],
     [ "COMPOSER", 429 ],
@@ -14,16 +15,17 @@
     [ "ADDERR_PARRAINE", 429 ]
   ],
   "cy": [
-    [ "CREER", 44 ],
-    [ "FAMILLE", 44 ],
-    [ "COMPOSER", 44 ],
-    [ "PASSWORD", 175 ],
-    [ "IDENTIFIER", 175 ],
-    [ "COMPTE", 175 ],
-    [ "MENBRE_FAMILLE", 175 ],
-    [ "ADDERE", 333 ],
-    [ "TYPE_ADHESION", 333 ],
-    [ "ADDERR_PARRAINE", 333 ]
+    [ "ADM", 35 ],
+    [ "CREER", 35 ],
+    [ "FAMILLE", 35 ],
+    [ "COMPOSER", 35 ],
+    [ "PASSWORD", 157 ],
+    [ "IDENTIFIER", 157 ],
+    [ "COMPTE", 157 ],
+    [ "MENBRE_FAMILLE", 157 ],
+    [ "ADDERE", 315 ],
+    [ "TYPE_ADHESION", 315 ],
+    [ "ADDERR_PARRAINE", 315 ]
   ],
   "shift": [
     [ "CREER,COMPTE,0", 0 ],
