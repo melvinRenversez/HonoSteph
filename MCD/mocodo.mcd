@@ -1,12 +1,13 @@
 
-TYPE_ADHESION: id, libelle, prix, description, duree
+parener, 01 COMPTE, 11 FAMILLE
+FAMILLE: id, 
+composer, 0N FAMILLE, 11  MENBRE_FAMILLE
 
-adhere, 0N TYPE_ADHESION, 0N FAMILLE
-
-FAMILLE: id, pere
-
-parener, 11 COMPTE, 11 FAMILLE
-composer, 0N FAMILLE, 11 MENBRE_FAMILLE
-
+:
 COMPTE: uuid, nom, prenom, mail, naissance, tel
 MENBRE_FAMILLE: uuid, nom, prenom, naissance 
+
+
+adhere, 1N TYPE_ADHESION, 1N COMPTE
+TYPE_ADHESION: id, libelle, prix, description, duree
+adhere_parainer, 1N TYPE_ADHESION, 1N MENBRE_FAMILLE, 0N COMPTE 
