@@ -195,7 +195,9 @@ where c.uuid = "a278a511-a9fd-11f0-8844-00e04c36042d"));
 
 -- recupere l'ahdesion parrainee du membre id 3 "2e075241-a9ff-11f0-8844-00e04c36042d" et son parrain id 2
 
-select mf.uuid, mf.nom as nomMembre, mf.prenom as prenomMembre, mf.naissance as naissMembre, ta.libelle as adhesion, ap.payed_at as datePayement, verifyMembershipValidity(ap.payed_at, ta.duree) as validity, c.nom as nomCompte, c.prenom as prenomCompte, c.naissance as naissCompte
+select mf.uuid, mf.nom as nomMembre, mf.prenom as prenomMembre, mf.naissance as naissMembre, ta.libelle as adhesion, 
+		ap.payed_at as datePayement, verifyMembershipValidity(ap.payed_at, ta.duree) as validity, c.nom as nomCompte, 
+        c.prenom as prenomCompte, c.naissance as naissCompte
 from membre_famille mf
 join adhesion_parrainee ap on ap.fk_membre_famille = mf.id
 join type_adhesion ta on ta.id = ap.fk_type_adhesion
