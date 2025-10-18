@@ -1,20 +1,44 @@
 
 
 
+Client;
+| id_client | nom     |
+| --------- | ------- |
+| 1         | Alice   |
+| 2         | Bob     |
+| 3         | Charlie |
+| 4         | David   |
 
-adhere, 0N TYPE_ADHESION, 0N FAMILLE
-
-FAMILLE: id, pere
-
-parener, 11 COMPTE, 11 FAMILLE
-composer, 0N FAMILLE, 11 MENBRE_FAMILLE
-
-COMPTE: uuid, nom, prenom, mail, naissance, tel
+Commande:
+| id_commande | id_client | montant |
+| ----------- | --------- | ------- |
+| 101         | 1         | 200.00  |
+| 102         | 1         | 120.00  |
+| 103         | 2         | 300.00  |
 
 
+SELECT c.nom, cmd.id_commande, cmd.montant
+FROM clients c
+LEFT JOIN commandes cmd ON c.id_client = cmd.id_client;
+
+| nom     | id_commande | montant |
+| ------- | ----------- | ------- |
+| Alice   | 101         | 200.00  |
+| Alice   | 102         | 120.00  |
+| Bob     | 103         | 300.00  |
+| Charlie | NULL        | NULL    |
+| David   | NULL        | NULL    |
 
 
-TYPE_ADHESION: id, libelle, prix, description, duree
-adhere_parainer, 1N TYPE_ADHESION, 1N MENBRE_FAMILLE, 0N COMPTE 
+---------------------------------------------------
 
-MENBRE_FAMILLE: uuid
+SELECT c.nom, cmd.id_commande, cmd.montant
+FROM clients c
+RIGHT JOIN commandes cmd ON c.id_client = cmd.id_client;
+
+| nom   | id_commande | montant |
+| ----- | ----------- | ------- |
+| Alice | 101         | 200.00  |
+| Alice | 102         | 120.00  |
+| Bob   | 103         | 300.00  |
+
