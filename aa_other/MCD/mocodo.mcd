@@ -6,7 +6,7 @@ composer, 0N FAMILLE, 11 MENBRE_FAMILLE
 
 PASSWORD: password
 identifier, 11 password, 11 COMPTE
-COMPTE: id, uuid, nom, prenom, mail, naissance, tel
+COMPTE: id, uuid, nom, prenom, mail, naissance, tel, adresse
 MENBRE_FAMILLE: id, uuid, nom, prenom, naissance
 
 

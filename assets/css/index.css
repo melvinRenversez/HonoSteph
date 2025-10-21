@@ -1,0 +1,375 @@
+body {
+    display: flex;
+    justify-content: center;
+
+}
+
+.trailer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+
+    background: #AA1C92;
+    background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+
+    z-index: -2;
+}
+
+.overlay {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    z-index: -1;
+}
+
+.trailer video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    /* background: rgba(255, 255, 255, 0.6); */
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    align-items: center;
+
+    margin-top: 40px;
+}
+
+h2 {
+    margin-bottom: 50px;
+    font-size: 50px;
+    color: white;
+}
+
+section.logo img {
+    width: 450px;
+
+    filter:
+        drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
+        /* léger violet */
+        drop-shadow(0 0 40px rgba(170, 28, 146, 0.4));
+    /* très subtil */
+
+}
+
+section.Presentation p {
+    font-size: 25px;
+    color: white;
+
+    text-align: center;
+}
+
+section.horaires table,
+section.horaires th,
+section.horaires td {
+    border-collapse: collapse;
+    padding: 15px;
+    width: min-content;
+}
+
+section.horaires tr th,
+section.horaires tr td {
+    border-left: 2px solid #fff;
+    color: white;
+    font-size: 20px;
+}
+
+section.horaires tr th:first-child,
+section.horaires tr td:first-child {
+    border-left: none !important;
+}
+
+tr {
+    white-space: nowrap;
+}
+
+section.tarif table,
+section.tarif th,
+section.tarif td {
+    border-collapse: collapse;
+    width: min-content;
+    border: 1px solid #fff;
+    color: white;
+
+    font-size: 20px;
+
+    padding: 20px 30px;
+
+}
+
+section.inscription p {
+    font-size: 25px;
+
+    color: white;
+
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+.warning {
+    color: rgb(202, 39, 39) !important;
+}
+
+section.inscription form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 50px;
+
+    /* background: green; */
+
+    width: 40%;
+
+    min-width: 400px;
+}
+
+section.inscription form .field {
+    position: relative;
+
+    /* background: red; */
+}
+
+section.inscription form .field label {
+
+    position: absolute;
+
+    left: 5px;
+    bottom: 10px;
+
+    font-size: 20px;
+    color: white;
+
+    transition: 0.4s ease bottom;
+}
+
+section.inscription form .field.spec label {
+    bottom: 100%;
+}
+
+section.inscription form .field input {
+    padding: 10px;
+    font-size: 15px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+
+    color: white;
+
+    width: 100%;
+
+    outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) invert(1);
+    /* rend l'icône blanche */
+}
+
+section.inscription form .field input:focus~label,
+section.inscription form .field input:not(:placeholder-shown)~label,
+section.inscription form .field:hover label {
+    bottom: 100%;
+    transition: bottom 0.4s ease;
+}
+
+section.inscription form select {
+    padding: 10px 15px;
+    border-radius: 7px;
+    color: white;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    /* fond transparent flouté */
+    backdrop-filter: blur(12px);
+    font-size: 1rem;
+
+    /* Désactive le style natif du navigateur */
+    appearance: none;
+    -webkit-appearance: none;
+    /* Chrome, Safari */
+    -moz-appearance: none;
+    /* Firefox */
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='14' viewBox='0 0 24 24' width='14' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+section.inscription form select:focus {
+    border-color: #fff;
+    outline: none;
+}
+
+section.inscription form option {
+    background-color: #222;
+    /* fond du menu déroulant sous Firefox */
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+section.inscription form button {
+    padding: 12px;
+
+    font-size: 1rem;
+
+    background-color: transparent;
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    border: 1px solid #aaa;
+
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.2s ease, background 0.2s ease;
+}
+
+section.inscription form button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+}
+
+section.urgence {
+    margin-bottom: 150px;
+}
+
+section.urgence p {
+    font-size: 25px;
+    color: white;
+    text-align: center;
+}
+
+.reseau {
+    display: flex;
+
+    gap: 80px;
+}
+
+.gapb {
+    margin-bottom: 30px;
+}
+
+.tel {
+    font-size: 44px;
+    text-decoration: none;
+    color: white;
+}
+
+.reseau .field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.reseau .field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.reseau .field .logo {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.reseau .field .logo svg {
+    width: 35px;
+    height: 35px;
+}
+
+.modif {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    color: #fff;
+    font-size: 20px;
+
+    cursor: pointer;
+
+    z-index: 100000;
+
+    text-decoration: none;
+
+    padding: 12px;
+
+    font-size: 1rem;
+
+    background-color: transparent;
+    backdrop-filter: blur(12px) !important;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    border: 1px solid #aaa;
+
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.2s ease, background 0.2s ease;
+}
+
+.modifD {
+    transform: translateY(calc(100% + 20px));
+    transition: transform 0.2s ease;
+}
+
+.modif:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.popup {
+    position: fixed;
+    top: 50px;
+    right: 50%;
+
+    transform: translate(50%);
+
+    display: flex;
+
+    backdrop-filter: blur(12px);
+
+    padding: 40px 100px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    z-index: 10;
+
+    border-radius: 10px;
+}

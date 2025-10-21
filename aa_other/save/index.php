@@ -500,18 +500,6 @@ $rowsAdhesion = $result->fetchAll(PDO::FETCH_ASSOC);
 
             <tbody>
 
-               <?php
-               foreach ($rowsAdhesion as $row) {
-                  echo "<tr>";
-                  echo "<td>" . $row["libelle"] . "</td>";
-                  echo "<td>" . $row["prix"] . "€</td>";
-                  echo "<td>" . $row["description"] . "</td>";
-                  echo "</tr>";
-               }
-
-
-               ?>
-
             </tbody>
          </table>
       </section>

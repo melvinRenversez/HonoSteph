@@ -11,12 +11,14 @@ create table compte (
     prenom varchar(255) not null,
     mail varchar(255) not null unique,
     naissance date not null,
-    tel varchar(255) not null,
+    tel varchar(255) not null unique,
+	adresse VARCHAR(255) not null,
 
     password varchar(255) not null,
 
     created_at TIMESTAMP not null default CURRENT_TIMESTAMP,
     updated_at TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	last_connection TIMESTAMP NULL DEFAULT NULL,
 
     PRIMARY KEY (id),
     UNIQUE KEY (uuid)
@@ -45,11 +47,11 @@ CREATE TABLE famille (
     created_at TIMESTAMP not null default CURRENT_TIMESTAMP,
     updated_at TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-    primary key (id),
+    primary key (id, fk_compte),
 
     FOREIGN KEY (fk_compte) REFERENCES compte(id) on delete cascade
 );
-
+drop table famille;
 
 CREATE TABLE membre_famille(
     id int not null auto_increment,   
@@ -69,6 +71,8 @@ CREATE TABLE membre_famille(
     FOREIGN KEY (fk_famille) REFERENCES famille(id) on delete cascade
 );
 
+drop table membre_famille;
+
 CREATE TABLE adhesion(
     id int not null auto_increment,
     fk_type_adhesion int not null,
@@ -85,6 +89,7 @@ CREATE TABLE adhesion(
 );
 
 
+drop table adhesion_parrainee;
 CREATE TABLE adhesion_parrainee(
     id int not null auto_increment,
     fk_type_adhesion int not null,
@@ -124,10 +129,7 @@ VALUES  (1),
         (2);
 
 INSERT INTO membre_famille (nom, prenom, naissance, fk_famille)
-VALUES  ("nomTestMembre", "prenomTestMembre", "2000-01-01", 1),
-        ("nomTestMembre2", "prenomTestMembre2", "2000-01-01", 1),
-        ("nomTestMembre3", "prenomTestMembre3", "2000-01-01", 2),
-        ("nomTestMembre4", "prenomTestMembre4", "2000-01-01", 2);
+VALUES  ("nomTestMembre4", "prenomTestMembre4", "2000-01-01", 6);
 
 INSERT INTO adhesion (fk_type_adhesion, fk_compte)
 VALUES  (1, 3);
@@ -144,8 +146,9 @@ VALUES  (2, 3, 2),
 SELECT * from compte;
 SELECT * from type_adhesion;
 SELECT * from famille;
+delete from famille where id between 0 and 10000000;
 SELECT * from membre_famille;
-SELECT * from adhesion;
+SELECT * from adhesion;	
 SELECT * from adhesion_parrainee;
 
 -- -------------------------------------

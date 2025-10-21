@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    /* Épaisseur de la barre */
+    scrollbar-width: thin;
+    /* options: auto | thin | none */
+
+    /* Couleurs : (thumb, track) */
+    scrollbar-color: rgba(170, 28, 146, 1) #111;
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: #111;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(170, 28, 146, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(170, 28, 146, 1), 0 0 20px rgba(77, 51, 149, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 15px rgba(170, 28, 146, 1), 0 0 25px rgba(77, 51, 149, 1);
+}
+
+/* Variante : effet dégradé sur Firefox via fallback */
+@supports not selector(::-webkit-scrollbar) {
+    * {
+        scrollbar-color: #aa1c92 #111;
+    }
+}
+
