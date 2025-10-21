@@ -40,6 +40,23 @@
     <div class="overlay"></div>
 
 
+
+
+
+
+    <section class="inscription">
+
+        <h2>Inscription</h2>
+
+        <form action="">
+            
+            
+            
+        </form>
+
+    </section>
+
+
 </body>
 
 </html>
