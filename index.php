@@ -16,6 +16,8 @@ include("./PHP/database.php");
 
     <link rel="stylesheet" href="./assets/css/default.css">
     <link rel="stylesheet" href="./assets/css/index.css">
+
+    <script src="./assets/js/popup.js" defer></script>
 </head>
 
 <body>
@@ -53,6 +55,11 @@ include("./PHP/database.php");
 
 
     <div class="content">
+
+        <section class="logo">
+            <img src="./assets/images/logo.png" alt="">
+        </section>
+
         <section class="Presentation">
             <h2>Présentation</h2>
 
@@ -165,38 +172,38 @@ include("./PHP/database.php");
 
 
                 <div class="field">
-                    <input type="text" name="name" id="name" required>
+                    <input type="text" name="name" id="name" required placeholder="">
                     <label for="">Nom</label>
                 </div>
 
                 <div class="field">
-                    <input type="text" name="surname" id="surname" required>
+                    <input type="text" name="surname" id="surname" required placeholder="">
                     <label for="">Prénom</label>
                 </div>
 
                 <div class="field">
-                    <input type="date" name="date" id="date" required>
+                    <input type="date" name="date" id="date" required placeholder="">
                     <label for="">Date de naissance</label>
                 </div>
 
                 <div class="field">
-                    <input type="text" name="address" id="address" required>
+                    <input type="text" name="address" id="address" required placeholder="">
                     <label for="">Adresse</label>
                 </div>
 
                 <div class="field">
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="email" id="email" required placeholder="">
                     <label for="">Mail</label>
                 </div>
 
                 <div class="field">
-                    <input type="tel" name="tel" id="tel" pattern="^(\+33|0)[1-9](\s?\d{2}){4}$" required>
+                    <input type="tel" name="tel" id="tel" pattern="^(\+33|0)[1-9](\s?\d{2}){4}$" required placeholder="">
                     <label for="">Téléphone</label>
 
                 </div>
 
                 <div class="field">
-                    <input type="password" name="password" id="password" required>
+                    <input type="password" name="password" id="password" required placeholder="">
                     <label for="">Mot de passe</label>
                 </div>
 

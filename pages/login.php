@@ -14,11 +14,6 @@
 <body>
 
 
-    <section class="logo">
-        <img src="../assets/images/logo.png">
-    </section>
-
-
     <div class="trailer">
         <video src="./assets/Full Trailer.mp4" autoplay loop muted></video>
     </div>
@@ -26,20 +21,35 @@
     <div class="overlay"></div>
     </div>
 
-    <section class="connection">
-        <form action="../PHP/connexion.php" method="post">
-            <div class="field">
-                <input type="mail" name="mail" id="mail" placeholder="">
-                <label for="">Mail</label>
-            </div>
-            <div class="field">
-                <input type="password" name="password" id="password" placeholder="">
-                <label for="">Password</label>
-            </div>
+    <div class="content">
 
-            <button>Se connecter</button>
-        </form>
-    </section>
+
+        <section class="logo">
+            <img src="../assets/images/logo.png">
+        </section>
+
+
+
+
+        <section class="connection">
+            <form action="../PHP/connexion.php" method="post">
+                <div class="field">
+                    <input type="mail" name="mail" id="mail" placeholder="">
+                    <label for="">Mail</label>
+                </div>
+                <div class="field">
+                    <input type="password" name="password" id="password" placeholder="">
+                    <label for="">Password</label>
+                </div>
+
+                <button>Se connecter</button>
+            </form>
+        </section>
+
+
+    </div>
+
+
 </body>
 
 </html>

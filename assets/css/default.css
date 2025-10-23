@@ -11,6 +11,7 @@
     scrollbar-color: rgba(170, 28, 146, 1) #111;
 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
 }
 
 ::-webkit-scrollbar {
@@ -42,3 +43,77 @@
     }
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+body {
+    display: flex;
+    justify-content: center;
+
+}
+
+.trailer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+
+    background: #AA1C92;
+    background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
+
+    z-index: -2;
+}
+
+.overlay {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    z-index: -1;
+}
+
+.trailer video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    /* background: rgba(255, 255, 255, 0.6); */
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+.content {
+    /* background: rgba(255, 255, 255, 0.6); */
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    align-items: center;
+
+    margin-top: 40px;
+}

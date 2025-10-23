@@ -151,6 +151,7 @@ SELECT * from membre_famille;
 SELECT * from adhesion;	
 SELECT * from adhesion_parrainee;
 
+describe adhesion;
 -- -------------------------------------
 -- -------- SPEC SELECT TABLES ---------
 -- -------------------------------------
@@ -206,3 +207,60 @@ join adhesion_parrainee ap on ap.fk_membre_famille = mf.id
 join type_adhesion ta on ta.id = ap.fk_type_adhesion
 join compte c on c.id = ap.fk_compte
 where mf.uuid = "2e075241-a9ff-11f0-8844-00e04c36042d";
+
+
+
+
+    (select nom, prenom, 'vous' as role, calculateAge(naissance)
+                            from compte c
+                            join famille f on f.fk_compte = c.id
+                            where c.id = 9)
+                            union all
+                            (select nom, prenom, 'membre' as role, calculateAge(naissance)
+                            from membre_famille
+                            where fk_famille = (select f.id 
+                            from compte c
+                            join famille f on f.fk_compte = c.id
+                            where c.id = 9));
+
+
+select count(mf.id) 
+from membre_famille mf
+join famille f on f.id = mf.fk_famille
+join compte c on c.id = f.fk_compte
+where c.id = 9;
+
+
+
+(select c.id, nom, prenom, 'vous' as role, calculateAge(naissance) as age
+from compte c
+join famille f on f.fk_compte = c.id
+where c.id = 9)
+union all
+(select mf.id, nom, prenom, 'membre' as role, calculateAge(naissance) as age
+from membre_famille mf
+where fk_famille = (select f.id 
+from compte c
+join famille f on f.fk_compte = c.id
+where c.id = 9));
+
+select a.id, t.libelle, a.created_at as date, verifyMemberShipValidity(a.payed_at, t.duree) as validity
+from adhesion a 
+join type_adhesion t on t.id = a.fk_type_adhesion
+where fk_compte = 6;
+
+select ap.id, t.libelle, mf.nom, mf.prenom, ap.created_at as date, verifyMemberShipValidity(ap.payed_at, t.duree) as validity
+from adhesion_parrainee ap
+join type_adhesion t on t.id = ap.fk_type_adhesion
+join membre_famille mf on mf.id = ap.fk_membre_famille
+where fk_compte = 6;
+
+select mf.id
+from compte c
+join famille f on f.fk_compte = c.id
+join membre_famille mf on mf.fk_famille = f.id 
+where c.id = 6 and mf.id=110;
+
+select id
+from adhesion 
+where fk_compte=6 and id = 3;

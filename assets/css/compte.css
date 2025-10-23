@@ -1,0 +1,385 @@
+h2 {
+    margin-bottom: 50px;
+    font-size: 50px;
+    color: white;
+}
+
+section.logo img {
+    width: 450px;
+
+    filter:
+        drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
+        /* léger violet */
+        drop-shadow(0 0 40px rgba(170, 28, 146, 0.4));
+    /* très subtil */
+
+}
+
+
+
+
+
+section.famille button {
+    padding: 12px;
+
+    margin-top: 50px;
+
+    font-size: 1rem;
+
+    background-color: transparent;
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    border: 1px solid #aaa;
+
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.2s ease, background 0.2s ease;
+}
+
+section.famille button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+}
+
+
+
+
+
+
+section.compte form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 50px;
+
+    /* background: green; */
+
+    width: 40%;
+
+    min-width: 400px;
+}
+
+section.compte form .field {
+    position: relative;
+
+    /* background: red; */
+}
+
+section.compte form .field label {
+
+    position: absolute;
+
+    left: 5px;
+    bottom: 10px;
+
+    font-size: 20px;
+    color: white;
+
+    transition: 0.4s ease bottom;
+}
+
+section.compte form .field.spec label {
+    bottom: 100%;
+}
+
+section.compte form .field input {
+    padding: 10px;
+    font-size: 15px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+
+    color: white;
+
+    width: 100%;
+
+    outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) invert(1);
+    /* rend l'icône blanche */
+}
+
+section.compte form .field input:focus~label,
+section.compte form .field input:not(:placeholder-shown)~label,
+section.compte form .field:hover label {
+    bottom: 100%;
+    transition: bottom 0.4s ease;
+}
+
+section.compte form button {
+    padding: 12px;
+
+    font-size: 1rem;
+
+    background-color: transparent;
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    border: 1px solid #aaa;
+
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.2s ease, background 0.2s ease;
+}
+
+section.compte form button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+}
+
+
+
+
+
+
+tr {
+    white-space: nowrap;
+}
+
+section.tarif table,
+section.famille table,
+section.tarif th,
+section.famille th,
+section.tarif td,
+section.famille td {
+    border-collapse: collapse;
+    width: min-content;
+    border: 1px solid #fff;
+    color: white;
+
+    font-size: 20px;
+
+    padding: 20px 30px;
+
+}
+
+section.tarif p{
+margin: 40px 0;
+}
+
+
+
+section.tarif form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 50px;
+
+    /* background: green; */
+
+    width: 40%;
+
+    min-width: 400px;
+}
+
+section.tarif form .field {
+    position: relative;
+
+    /* background: red; */
+}
+
+section.tarif form .field label {
+
+    position: absolute;
+
+    left: 5px;
+    bottom: 10px;
+
+    font-size: 20px;
+    color: white;
+
+    transition: 0.4s ease bottom;
+}
+
+section.tarif form .field.spec label {
+    bottom: 100%;
+}
+
+section.tarif form .field input {
+    padding: 10px;
+    font-size: 15px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+
+    color: white;
+
+    width: 100%;
+
+    outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) invert(1);
+    /* rend l'icône blanche */
+}
+
+section.tarif form .field input:focus~label,
+section.tarif form .field input:not(:placeholder-shown)~label,
+section.tarif form .field:hover label {
+    bottom: 100%;
+    transition: bottom 0.4s ease;
+}
+
+section.tarif form select {
+    padding: 10px 15px;
+    border-radius: 7px;
+    color: white;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    /* fond transparent flouté */
+    backdrop-filter: blur(12px);
+    font-size: 1rem;
+
+    /* Désactive le style natif du navigateur */
+    appearance: none;
+    -webkit-appearance: none;
+    /* Chrome, Safari */
+    -moz-appearance: none;
+    /* Firefox */
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='14' viewBox='0 0 24 24' width='14' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+section.tarif form select:focus {
+    border-color: #fff;
+    outline: none;
+}
+
+section.tarif form option {
+    background-color: #222;
+    /* fond du menu déroulant sous Firefox */
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+section.tarif form button {
+    padding: 12px;
+
+    font-size: 1rem;
+
+    background-color: transparent;
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    border: 1px solid #aaa;
+
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.2s ease, background 0.2s ease;
+}
+
+section.tarif form button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+}
+
+
+section.tarif form #radios{
+    flex-direction: column;
+    gap: 20px;
+}
+
+section.tarif form #radios label{
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+section.tarif form #radios input{
+    cursor: pointer;
+}
+
+section.abonnement{
+    margin-bottom: 100px;
+}
+
+section.abonnement .allAbonnements{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 100%;
+
+    align-items: center;
+}
+
+section.abonnement .allAbonnements .box{
+    border: 1px solid #fff;
+    border-radius: 10px;
+
+    width: 80%;
+
+    padding: 10px 20px;
+
+    position: relative;
+}
+
+
+section.abonnement .allAbonnements .box .top{
+    margin-bottom: 50px;
+}
+
+
+section.abonnement .allAbonnements .box .status{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+section.abonnement .allAbonnements .box .status .circle{
+    width: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+}
+
+.in{
+    background-color: orange;
+}
+.ac{
+    background-color: green;
+}
+.ex {
+    background-color: red;
+}
+
+section.abonnement .allAbonnements .box .delete{
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    cursor: pointer;
+}
+
+section.abonnement .allAbonnements .box .delete svg path{
+    transition: stroke 0.6s ease;
+}
+
+section.abonnement .allAbonnements .box .delete:hover svg path{
+    transition: stroke 0.6s ease;
+    stroke: red;
+}
