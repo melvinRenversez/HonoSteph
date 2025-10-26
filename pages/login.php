@@ -39,7 +39,7 @@
                 </div>
                 <div class="field">
                     <input type="password" name="password" id="password" placeholder="">
-                    <label for="">Password</label>
+                    <label for="">Mot de Passe</label>
                 </div>
 
                 <button>Se connecter</button>
