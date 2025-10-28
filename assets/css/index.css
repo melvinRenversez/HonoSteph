@@ -73,11 +73,6 @@ section.inscription p {
 
     margin-bottom: 50px;
 }
-
-.warning {
-    color: rgb(202, 39, 39) !important;
-}
-
 section.inscription form {
     display: flex;
     flex-direction: column;

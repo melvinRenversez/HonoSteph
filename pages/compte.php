@@ -24,27 +24,6 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
 </head>
 
 <style>
-    .addMemberForm {
-        opacity: 0;
-        display: none;
-
-        transition: 0.3s ease;
-    }
-
-    .addMemberForm.active {
-        opacity: 1;
-        display: block;
-
-        transition: 0.3s ease;
-    }
-
-    #enfantMemberSelect,
-    #adultMemberSelect,
-    #memberSelect,
-    #MemberOneDaySelect,
-    #radios {
-        display: none;
-    }
 </style>
 
 <body>
@@ -58,27 +37,35 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
     <div class="overlay"></div>
 
 
+    <a class="modif" href="../index.php">
+        Retour
+    </a>
+
+
 
     <div class="addMemberForm" id="addMemberForm">
         <form action="../PHP/addMember.php" method="post">
             <div class="field">
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" placeholder="" required>
                 <label for="">Nom</label>
             </div>
 
             <div class="field">
-                <input type="text" name="surname" id="surname" required>
+                <input type="text" name="surname" id="surname" placeholder="" required>
                 <label for="">Prénom</label>
             </div>
 
             <div class="field">
-                <input type="date" name="date" id="date" required>
+                <input type="date" name="date" id="date" placeholder="" required>
                 <label for="">Date de naissance</label>
             </div>
 
             <button type="submit">Ajouter</button>
+            <button id="annAddMember">Annuler</button>
         </form>
     </div>
+
+
 
     <?php if (isset($_SESSION["error"])): ?>
         <div class="popup" id="popup">
@@ -121,10 +108,10 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
                 <table>
                     <thead>
                         <tr>
-                            <th>type</th>
-                            <th>nom</th>
-                            <th>prenom</th>
-                            <th>age</th>
+                            <th>Catégorie</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Age</th>
                         </tr>
                     </thead>
 
@@ -158,9 +145,17 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
                             echo "<td>" . $row['role'] . "</td>";
                             echo "<td>" . $row['nom'] . "</td>";
                             echo "<td>" . $row['prenom'] . "</td>";
-                            echo "<td>" . $row['age'] . "</td>";
                             if ($row['role'] !== 'vous') {
-                                echo "<td> <a href='../PHP/supprimerMembre.php?memberId=" . $row['id'] . "'>supprimer</a> </td>";
+                                echo "<td class='tb'>" . $row['age'] . " <a href='../PHP/deleteMembre.php?memberId=" . $row['id'] . "'>
+                        <svg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 24 24'
+                            fill='none'>
+                            <path
+                                d='M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17'
+                                stroke='#000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+                        </svg>
+                    </a></td>";
+                            } else {
+                                echo "<td>" . $row['age'] . "</td>";
                             }
                             echo "</tr>";
                         }
@@ -262,7 +257,7 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
                 </div>
 
 
-                <button>modifier mon compte</button>
+                <button>Modifier mon compte</button>
 
             </form>
 
@@ -275,7 +270,7 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
 
         <section class="tarif">
 
-            <h2>Abbonement</h2>
+            <h2>Abonnements</h2>
 
             <table>
                 <thead>
@@ -307,8 +302,8 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
                 </tbody>
             </table>
 
-            <p>
-                Une fois que vous aurez commandé un abonnement, vous devrez le payer sur place
+            <p class="warning">
+                Une fois votre abonnement commandé, vous le réglerez sur place.
             </p>
 
 
@@ -332,7 +327,7 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
 
                 <select name="enfantMember" id="enfantMemberSelect">
 
-                    <option value="" disabled selected>Personnes enfant concernées</option>
+                    <option value="" disabled selected>Enfant concerné</option>
 
                     <?php
 
@@ -347,7 +342,7 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
 
                 <select name="Member" id="memberSelect">
 
-                    <option value="" disabled selected>Personnes la personne concernées</option>
+                    <option value="" disabled selected>Personne concerné</option>
 
                     <?php
 
@@ -367,13 +362,13 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
                     </div>
                     <div>
                         <input type="radio" name="Who" id="ForOther" value="2">
-                        <label for="ForOther">Pour mon enfantn</label>
+                        <label for="ForOther">Pour mon enfant</label>
                     </div>
                 </div>
 
                 <select name="memberOneDay" id="MemberOneDaySelect">
 
-                    <option value="" disabled selected>Personnes la personne concernées</option>
+                    <option value="" disabled selected>Personne concerné</option>
 
                     <?php
 
@@ -400,73 +395,548 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
 
             <h2>Mes Abonnements</h2>
 
-            <?php
-            $query = "select 'a' as origine, a.id, t.libelle, a.created_at as date, verifyMemberShipValidity(a.payed_at, t.duree) as validity
+            <div class="allAbonnements">
+
+
+                <?php
+                $query = "select 'a' as origine, a.id, t.libelle, a.created_at as date, verifyMemberShipValidity(a.payed_at, t.duree) as validity,  t.id as idType, a.payed_at as payed, t.duree
                 from adhesion a 
                 join type_adhesion t on t.id = a.fk_type_adhesion
                 where fk_compte = :idCompte";
 
 
-            $stmt = $db->prepare($query);
-            $stmt->execute(
-                array(
-                    ':idCompte' => $_SESSION["id"]
-                )
-            );
-            $adhesion = $stmt->fetchAll();
+                $stmt = $db->prepare($query);
+                $stmt->execute(
+                    array(
+                        ':idCompte' => $_SESSION["id"]
+                    )
+                );
+                $adhesion = $stmt->fetchAll();
 
 
 
 
-            $query = "select 'ap' as origine, ap.id, t.libelle, mf.nom, mf.prenom, ap.created_at as date, verifyMemberShipValidity(ap.payed_at, t.duree) as validity
+                $query = "select 'ap' as origine, ap.id, t.libelle, mf.nom, mf.prenom, ap.created_at as date, verifyMemberShipValidity(ap.payed_at, t.duree) as validity, t.id as idType, ap.payed_at as payed, t.duree
                 from adhesion_parrainee ap
                 join type_adhesion t on t.id = ap.fk_type_adhesion
                 join membre_famille mf on mf.id = ap.fk_membre_famille
                 where fk_compte = :idCompte;";
 
-            $stmt = $db->prepare($query);
-            $stmt->execute(
-                array(
-                    ':idCompte' => $_SESSION["id"]
-                )
-            );
-            $adhesionParrainee = $stmt->fetchAll();
+                $stmt = $db->prepare($query);
+                $stmt->execute(
+                    array(
+                        ':idCompte' => $_SESSION["id"]
+                    )
+                );
+                $adhesionParrainee = $stmt->fetchAll();
 
 
 
-            $allAdhesion = array_merge($adhesion, $adhesionParrainee);
+                $allAdhesion = array_merge($adhesion, $adhesionParrainee);
 
-            usort($allAdhesion, function ($a, $b) {
-                return strtotime($b["date"]) <=> strtotime($a["date"]);
-            });
+                usort($allAdhesion, function ($a, $b) {
+                    return strtotime($b["date"]) <=> strtotime($a["date"]);
+                });
 
 
 
-            foreach ($allAdhesion as $row) {
-                if ($row['validity'] == "inactif") {
-            
+                foreach ($allAdhesion as $row) {
 
-                    if ($row['origine'] == 'a') {
-                        $a = " - <a href='../PHP/supprimerAdhesion.php?adsId=" . $row['id'] . "' >Supprimer</a>";
-                    } else {
-                        $a = " - <a href='../PHP/supprimerAdhesionParrainee.php?adsId=" . $row['id'] . "' >Supprimer</a>";
+
+                    $payed = new DateTime($row["payed"]);
+                    $duree = (int) $row["duree"];
+                    $payed->modify("+{$duree} days");
+
+                    $unvalidity = $payed->format("d-m-Y");
+                    $payedFormat = $payed->format("d-m-Y");
+
+                    $datetime = new DateTime($row["date"]);
+                    $commandformatted = "le " . $datetime->format("d-m-Y") . " à " . $datetime->format("H:i:s");
+
+
+                    if ($row["idType"] == 1) {
+
+                        if ($row["validity"] == "inactif") {
+
+                            $button = '
+                                <a href="../PHP/deleteAdhesion.php?adsId=' . $row["id"] . ' " class="delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <path
+                                            d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17"
+                                            stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                                ';
+                            $status = "
+                            
+                                <div class='status'>
+                                    <span>Inactif</span>
+                                    <div class='circle in'></div>
+                                </div>
+                            
+                            ";
+
+                            $date = '
+
+                                <div class="bottom">
+                                    <p>Commandé ' . $commandformatted . '</p>
+                                </div>
+
+                                ';
+
+
+                        } else if ($row["validity"] == "actif") {
+
+                            $button = '';
+
+                            $status = "
+                            
+                                <div class='status'>
+                                    <span>Actif</span>
+                                    <div class='circle ac'></div>
+                                </div>
+                            
+                            ";
+
+                            $date = "
+
+                                    <div class='bottom'>
+                                        <p>Acheté le " . $payedFormat . "</p>
+                                        <p>Valable jusqu'au " . $unvalidity . " </p>
+                                    </div>
+
+                                ";
+
+                        } else {
+
+                            $button = '';
+                            $status = "
+                            
+                                <div class='status'>
+                                    <span>Expiré</span>
+                                    <div class='circle ex'></div>
+                                </div>
+                            
+                            ";
+                            $date = "
+
+                                    <div class='bottom'>
+                                        <p>Acheté le " . $payedFormat . "</p>
+                                        <p>Valable jusqu'au " . $unvalidity . " </p>
+                                    </div>
+
+                                ";
+
+                        }
+
+
+
+
+                        echo "
+                        
+                        <div class='box'>
+
+                            " . $button . "
+
+                            <div class='top'>
+                                <h3>Abonnement <span>" . $row['libelle'] . "</span></h3>
+                                <h5>Pour Vous</h5>
+                            </div>
+
+                            " . $date . "
+
+                            " . $status . "
+                        </div>
+
+                        ";
+
                     }
-            
-                } else {
-                    $a = "";
-                }
-            
-                if ($row['origine'] == 'a') {
-                    echo "<p>" . $row["id"] . " - " . $row['libelle'] . " - " . $row['date'] . " - " . $row['validity'] . $a . "</p>";
-                } else {
-                    echo "<p>" . $row["id"] . " - " . $row['libelle'] . " - " . $row['nom'] . " " . $row['prenom'] . " - " . $row['date'] . " - " . $row['validity'] . $a . "</p>";
-                }
-            }
-            ?>
 
-            <div class="allAbonnements">
 
-                <div class="box">
+                    if ($row["idType"] == 2) {
+
+
+                        if ($row["validity"] == "inactif") {
+                            $button = '
+                                <a href="../PHP/deleteAdhesionParrainer.php?adsId=' . $row["id"] . ' " class="delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <path
+                                            d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17"
+                                            stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            ';
+
+                            $status = "
+                            
+                                <div class='status'>
+                                    <span>Inactif</span>
+                                    <div class='circle in'></div>
+                                </div>
+                            
+                            ";
+
+                            $date = '
+                                <div class="bottom">
+                                    <p>Commandé ' . $commandformatted . '</p>
+                                </div>
+                            ';
+
+                        } else if ($row["validity"] == "actif") {
+                            $button = '';
+
+                            $status = "
+                            
+                                <div class='status'>
+                                    <span>Actif</span>
+                                    <div class='circle ac'></div>
+                                </div>
+                            
+                            ";
+
+                            $date = "
+                                <div class='bottom'>
+                                        <p>Acheté le " . $payedFormat . "</p>
+                                        <p>Valable jusqu'au " . $unvalidity . " </p>
+                                    </div>
+                            ";
+
+                        } else {
+                            $button = '';
+
+                            $status = "
+                            
+                                <div class='status'>
+                                    <span>Expiré</span>
+                                    <div class='circle ex'></div>
+                                </div>
+                            
+                            ";
+
+                            $date = "
+                                <div class='bottom'>
+                                        <p>Acheté le " . $payedFormat . "</p>
+                                        <p>Valable jusqu'au " . $unvalidity . " </p>
+                                    </div>
+                            ";
+
+                        }
+
+
+
+
+
+
+                        echo "<div class='box'>
+
+                                " . $button . "
+
+                                <div class='top'>
+                                    <h3>Abonnement <span>" . $row["libelle"] . "</span></h3>
+                                    <h5>Pour " . $row["prenom"] . " " . $row["nom"] . "</h5>
+                                </div>
+
+                                " . $date . "
+
+
+                                " . $status . "
+                            </div>";
+
+                    }
+
+
+                    if ($row["idType"] == 3) {
+
+
+
+                        if ($row["validity"] == "inactif") {
+                            $button = '
+                                <a href="../PHP/deleteAdhesion.php?adsId=' . $row["id"] . ' " class="delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <path
+                                            d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17"
+                                            stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                                ';
+
+
+                            $status = '
+                                    <div class="status">
+                                    <span>Inactif</span>
+                                    <div class="circle in"></div>
+                                </div>
+                                ';
+
+                            $date = '
+
+                                <div class="bottom">
+                                    <p>Commandé ' . $commandformatted . '</p>
+                                </div>
+
+                                ';
+
+                        } else if ($row["validity"] == "actif") {
+                            $button = '';
+                            $status = '
+                                    <div class="status">
+                                    <span>Actif</span>
+                                    <div class="circle ac"></div>
+                                </div>
+                                ';
+
+                            $date = "
+
+                                    <div class='bottom'>
+                                        <p>Acheté le " . $payedFormat . "</p>
+                                        <p>Valable jusqu'au " . $unvalidity . " </p>
+                                    </div>
+
+                                ";
+
+                        } else {
+                            $button = '';
+                            $status = '
+                                    <div class="status">
+                                    <span>Expiré</span>
+                                    <div class="circle ex"></div>
+                                </div>
+                                ';
+                            $date = "
+
+                                    <div class='bottom'>
+                                        <p>Acheté le " . $payedFormat . "</p>
+                                        <p>Valable jusqu'au " . $unvalidity . " </p>
+                                    </div>
+
+                                ";
+                        }
+
+                        echo '
+                        
+                        
+                            <div class="box">
+
+                                '
+                            .
+
+                            $button
+                            .
+
+                            '
+
+                                <div class="top">
+                                    <h3>Abonnement <span>' . $row["libelle"] . '</span></h3>
+                                    <div class="concerner">
+                                        ';
+
+
+
+                        foreach ($famillyMember as $member) {
+
+                            if ($member["role"] == "vous") {
+                                echo " <h5> Pour vous </h5>";
+                            } else {
+                                echo " <h5> Pour " . $member['prenom'] . " " . $member['nom'] . '</h5>';
+                            }
+                        }
+                        echo '
+                                    </div>
+                                </div>
+                                '
+                            .
+                            $date
+                            .
+                            '
+                                    '
+                            .
+                            $status
+                            .
+                            '
+                            </div>
+                        ';
+
+                    }
+
+                    if ($row["idType"] == 4) {
+
+
+                        if ($row["origine"] == "a") {
+                            $pour = 'Pour vous';
+
+                            $url = '../PHP/deleteAdhesion.php?adsId=' . $row["id"];
+
+
+                        } else {
+                            $pour = 'Pour ' . $row["prenom"] . ' ' . $row["nom"];
+
+                            $url = '../PHP/deleteAdhesionParrainer.php?adsId=' . $row["id"];
+                        }
+
+
+                        if ($row["validity"] == "inactif") {
+
+                            $button = '
+                                <a href="'. $url .'" class="delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <path
+                                            d="M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6M14 10V17M10 10V17"
+                                            stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                                ';
+
+
+                            $date = '
+
+                                <div class="bottom">
+                                    <p>Commandé ' . $commandformatted . '</p>
+                                </div>
+
+                                ';
+
+
+                            $status = '
+                                    <div class="status">
+                                    <span>Inactif</span>
+                                    <div class="circle in"></div>
+                                </div>
+                                ';
+
+
+
+
+                        } else if ($row["validity"] == "actif") {
+
+                            $button = '';
+
+                            $date = "
+
+                                    <div class='bottom'>
+                                        <p>Acheté le " . $payedFormat . "</p>
+                                        <p>Valable jusqu'au " . $unvalidity . " </p>
+                                    </div>
+
+                                ";
+
+
+                            $status = '
+                                    <div class="status">
+                                    <span>Actif</span>
+                                    <div class="circle ac"></div>
+                                </div>
+                                ';
+
+
+                        } else {
+
+                            $button = '';
+
+                            $date = "
+
+                                    <div class='bottom'>
+                                        <p>Acheté le " . $payedFormat . "</p>
+                                        <p>Valable jusqu'au " . $unvalidity . " </p>
+                                    </div>
+
+                                ";
+
+                            $status = '
+                                    <div class="status">
+                                    <span>Expiré</span>
+                                    <div class="circle ex"></div>
+                                </div>
+                                ';
+                        }
+
+
+
+
+
+
+
+                        echo '
+                        
+                            <div class="box">
+
+                                ' . $button . '
+
+                                <div class="top">
+                                    <h3>Abonnement <span>Pass une journée</span></h3>
+                                    ' . $pour . '
+                                </div>
+
+                                ' . $date . '
+
+
+                                ' . $status . '
+                            </div>
+
+                        ';
+
+                    }
+                }
+                ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- <div class="box">
 
                     <a href="" class="delete">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
@@ -479,6 +949,12 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
 
                     <div class="top">
                         <h3>Abonnement <span>Annuel famille</span></h3>
+                        <div class="concerner">
+                            <h5>Pour Vous</h5>
+                            <h5>Pour Truc Machin</h5>
+                            <h5>Pour Truc Machin</h5>
+                            <h5>Pour Truc Machin</h5>
+                        </div>
                     </div>
 
                     <div class="bottom">
@@ -531,6 +1007,7 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
                 <div class="box">
                     <div class="top">
                         <h3>Abonnement <span>Annuel adulte</span></h3>
+                        <h5>Pour Vous</h5>
                     </div>
 
 
@@ -544,6 +1021,7 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
                 <div class="box">
                     <div class="top">
                         <h3>Abonnement <span>Annuel adulte</span></h3>
+                        <h5>Pour Vous</h5>
                     </div>
 
                     <div class="bottom">
@@ -561,6 +1039,7 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
                 <div class="box">
                     <div class="top">
                         <h3>Abonnement <span>Annuel adulte</span></h3>
+                        <h5>Pour Vous</h5>
                     </div>
 
                     <div class="bottom">
@@ -709,7 +1188,7 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
 
 
 
-
+ -->
 
             </div>
 
@@ -733,6 +1212,8 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
 
     const radios = document.getElementById("radios");
     const radiosInput = document.querySelectorAll('input[name="Who"]');
+
+    const annAddMember = document.getElementById("annAddMember");
 
     function toggleAddMemberForm() {
         addMemberForm.classList.toggle("active");
@@ -785,6 +1266,10 @@ $haveFamilly = recupFamille($_SESSION["id"], $db);
         });
     });
 
+    annAddMember.addEventListener("click", (e) => {
+        e.preventDefault();
+        addMemberForm.classList.remove("active");
+    })
 
 
 </script>
