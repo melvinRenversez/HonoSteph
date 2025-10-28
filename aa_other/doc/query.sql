@@ -14,7 +14,8 @@ create table compte (
     tel varchar(255) not null unique,
 	adresse VARCHAR(255) not null,
 
-    password varchar(255) not null,
+	salt char(64) not null,
+    password char(63) not null,
 
     created_at TIMESTAMP not null default CURRENT_TIMESTAMP,
     updated_at TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -24,6 +25,7 @@ create table compte (
     UNIQUE KEY (uuid)
 );
 
+select * from compte;
 
 create table type_adhesion (
     id int not null auto_increment,

@@ -1,65 +1,5 @@
 [
     {
-        "label": "subprocess",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "detail": "subprocess",
-        "documentation": {}
-    },
-    {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
-        "label": "qrcode",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "qrcode",
-        "description": "qrcode",
-        "detail": "qrcode",
-        "documentation": {}
-    },
-    {
-        "label": "StyledPilImage",
-        "importPath": "qrcode.image.styledpil",
-        "description": "qrcode.image.styledpil",
-        "isExtraImport": true,
-        "detail": "qrcode.image.styledpil",
-        "documentation": {}
-    },
-    {
-        "label": "RoundedModuleDrawer",
-        "importPath": "qrcode.image.styles.moduledrawers",
-        "description": "qrcode.image.styles.moduledrawers",
-        "isExtraImport": true,
-        "detail": "qrcode.image.styles.moduledrawers",
-        "documentation": {}
-    },
-    {
-        "label": "SolidFillColorMask",
-        "importPath": "qrcode.image.styles.colormasks",
-        "description": "qrcode.image.styles.colormasks",
-        "isExtraImport": true,
-        "detail": "qrcode.image.styles.colormasks",
-        "documentation": {}
-    },
-    {
         "label": "A4",
         "importPath": "reportlab.lib.pagesizes",
         "description": "reportlab.lib.pagesizes",
@@ -180,174 +120,111 @@
         "documentation": {}
     },
     {
-        "label": "MCD_FILE",
-        "kind": 5,
-        "importPath": "aa_other.MCD.live",
-        "description": "aa_other.MCD.live",
-        "peekOfCode": "MCD_FILE = \"mocodo.mcd\"\n# Dossier où se trouve le fichier\nWORK_DIR = r\"./\"\nprint(\"=== Live Mocodo Server ===\")\nprint(f\"Surveillance du fichier : {MCD_FILE}\")\nprint(\"Appuie sur Ctrl+C pour arrêter.\\n\")\ni = 0\nwhile True:\n   try:\n      # Exécuter Mocodo",
-        "detail": "aa_other.MCD.live",
-        "documentation": {}
-    },
-    {
-        "label": "WORK_DIR",
-        "kind": 5,
-        "importPath": "aa_other.MCD.live",
-        "description": "aa_other.MCD.live",
-        "peekOfCode": "WORK_DIR = r\"./\"\nprint(\"=== Live Mocodo Server ===\")\nprint(f\"Surveillance du fichier : {MCD_FILE}\")\nprint(\"Appuie sur Ctrl+C pour arrêter.\\n\")\ni = 0\nwhile True:\n   try:\n      # Exécuter Mocodo\n      i += 1\n      print(f\"[INFO] {i} Génération du schéma...\")",
-        "detail": "aa_other.MCD.live",
-        "documentation": {}
-    },
-    {
-        "label": "i",
-        "kind": 5,
-        "importPath": "aa_other.MCD.live",
-        "description": "aa_other.MCD.live",
-        "peekOfCode": "i = 0\nwhile True:\n   try:\n      # Exécuter Mocodo\n      i += 1\n      print(f\"[INFO] {i} Génération du schéma...\")\n      subprocess.run(\n         [\"python\", \"-m\", \"mocodo\", \"--input\", MCD_FILE, \"--colors\", \"brewer+3\"],\n         cwd=WORK_DIR,\n         capture_output=True,",
-        "detail": "aa_other.MCD.live",
-        "documentation": {}
-    },
-    {
-        "label": "uuid",
-        "kind": 5,
-        "importPath": "aa_other.QRCode.main",
-        "description": "aa_other.QRCode.main",
-        "peekOfCode": "uuid = \"01234567-89ab-cdef-0123-456789abcdef\"\nqr = qrcode.QRCode(\n    version=1,  # taille du QR code : 1 = 21x21, 2 = 25x25, etc.\n    error_correction=qrcode.constants.ERROR_CORRECT_H,  # tolérance d'erreurs élevée\n    box_size=10,  # taille d'un carré\n    border=4,    # épaisseur de la bordure\n)\nqr.add_data(uuid)\nqr.make(fit=True)\n# Personnalisation du style",
-        "detail": "aa_other.QRCode.main",
-        "documentation": {}
-    },
-    {
-        "label": "qr",
-        "kind": 5,
-        "importPath": "aa_other.QRCode.main",
-        "description": "aa_other.QRCode.main",
-        "peekOfCode": "qr = qrcode.QRCode(\n    version=1,  # taille du QR code : 1 = 21x21, 2 = 25x25, etc.\n    error_correction=qrcode.constants.ERROR_CORRECT_H,  # tolérance d'erreurs élevée\n    box_size=10,  # taille d'un carré\n    border=4,    # épaisseur de la bordure\n)\nqr.add_data(uuid)\nqr.make(fit=True)\n# Personnalisation du style\nimg = qr.make_image(",
-        "detail": "aa_other.QRCode.main",
-        "documentation": {}
-    },
-    {
-        "label": "img",
-        "kind": 5,
-        "importPath": "aa_other.QRCode.main",
-        "description": "aa_other.QRCode.main",
-        "peekOfCode": "img = qr.make_image(\n    image_factory=StyledPilImage,\n    color_mask=SolidFillColorMask(back_color=(52, 33, 130), front_color=(0,0,0))  # couleur avant/arrière\n)\nfilename = f\"custom_qr.png\"\nimg.save(filename)",
-        "detail": "aa_other.QRCode.main",
-        "documentation": {}
-    },
-    {
-        "label": "filename",
-        "kind": 5,
-        "importPath": "aa_other.QRCode.main",
-        "description": "aa_other.QRCode.main",
-        "peekOfCode": "filename = f\"custom_qr.png\"\nimg.save(filename)",
-        "detail": "aa_other.QRCode.main",
-        "documentation": {}
-    },
-    {
         "label": "add_page_number",
         "kind": 2,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "def add_page_number(canvas, doc):\n    page_num = canvas.getPageNumber()\n    text = f\"Page {page_num}\"\n    canvas.setFont(\"Helvetica\", 9)\n    canvas.drawRightString(PAGE_WIDTH - MARGES, 1.2 * cm, text)\n    canvas.drawString(MARGES, 1.2 * cm, \"Édition octobre 2025 – Catalogue évolutif HQS\")\n# --- STYLES ---\nstyles = getSampleStyleSheet()\nstyles.add(ParagraphStyle(name=\"TitrePrincipal\", fontSize=22, alignment=TA_CENTER, spaceAfter=20))\nstyles.add(ParagraphStyle(name=\"SousTitre\", fontSize=14, alignment=TA_CENTER, textColor=colors.HexColor(\"#004C97\")))",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "MARGES",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "MARGES = 2 * cm\nLOGO_PATH = \"HQS logo final.jpg\"  # chemin vers ton logo\nPDF_NAME = \"Catalogue_HQS_Version_Claire.pdf\"\n# --- FONCTION PIED DE PAGE + NUMÉROTATION ---\ndef add_page_number(canvas, doc):\n    page_num = canvas.getPageNumber()\n    text = f\"Page {page_num}\"\n    canvas.setFont(\"Helvetica\", 9)\n    canvas.drawRightString(PAGE_WIDTH - MARGES, 1.2 * cm, text)\n    canvas.drawString(MARGES, 1.2 * cm, \"Édition octobre 2025 – Catalogue évolutif HQS\")",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "LOGO_PATH",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "LOGO_PATH = \"HQS logo final.jpg\"  # chemin vers ton logo\nPDF_NAME = \"Catalogue_HQS_Version_Claire.pdf\"\n# --- FONCTION PIED DE PAGE + NUMÉROTATION ---\ndef add_page_number(canvas, doc):\n    page_num = canvas.getPageNumber()\n    text = f\"Page {page_num}\"\n    canvas.setFont(\"Helvetica\", 9)\n    canvas.drawRightString(PAGE_WIDTH - MARGES, 1.2 * cm, text)\n    canvas.drawString(MARGES, 1.2 * cm, \"Édition octobre 2025 – Catalogue évolutif HQS\")\n# --- STYLES ---",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "PDF_NAME",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "PDF_NAME = \"Catalogue_HQS_Version_Claire.pdf\"\n# --- FONCTION PIED DE PAGE + NUMÉROTATION ---\ndef add_page_number(canvas, doc):\n    page_num = canvas.getPageNumber()\n    text = f\"Page {page_num}\"\n    canvas.setFont(\"Helvetica\", 9)\n    canvas.drawRightString(PAGE_WIDTH - MARGES, 1.2 * cm, text)\n    canvas.drawString(MARGES, 1.2 * cm, \"Édition octobre 2025 – Catalogue évolutif HQS\")\n# --- STYLES ---\nstyles = getSampleStyleSheet()",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "styles",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "styles = getSampleStyleSheet()\nstyles.add(ParagraphStyle(name=\"TitrePrincipal\", fontSize=22, alignment=TA_CENTER, spaceAfter=20))\nstyles.add(ParagraphStyle(name=\"SousTitre\", fontSize=14, alignment=TA_CENTER, textColor=colors.HexColor(\"#004C97\")))\nstyles.add(ParagraphStyle(name=\"Texte\", fontSize=11, leading=16, alignment=TA_LEFT))\nstyles.add(ParagraphStyle(name=\"TitreProduit\", fontSize=14, textColor=colors.HexColor(\"#004C97\"), spaceAfter=6))\nstyles.add(ParagraphStyle(name=\"Carac\", fontSize=11, leftIndent=10))\n# --- DOCUMENT ---\ndoc = SimpleDocTemplate(PDF_NAME, pagesize=A4,\n                        leftMargin=MARGES, rightMargin=MARGES,\n                        topMargin=MARGES, bottomMargin=2*cm)",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "doc",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "doc = SimpleDocTemplate(PDF_NAME, pagesize=A4,\n                        leftMargin=MARGES, rightMargin=MARGES,\n                        topMargin=MARGES, bottomMargin=2*cm)\nelements = []\n# --- PAGE DE GARDE ---\nelements.append(Spacer(1, 6*cm))\nelements.append(Image(LOGO_PATH, width=5*cm, height=3*cm))\nelements.append(Spacer(1, 2*cm))\nelements.append(Paragraph(\"CATALOGUE DE PIÈCES ÉVOLUTIF HQS\", styles[\"TitrePrincipal\"]))\nelements.append(Paragraph(\"Des solutions techniques sur mesure, fiables et prêtes à l’emploi\", styles[\"SousTitre\"]))",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "elements",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "elements = []\n# --- PAGE DE GARDE ---\nelements.append(Spacer(1, 6*cm))\nelements.append(Image(LOGO_PATH, width=5*cm, height=3*cm))\nelements.append(Spacer(1, 2*cm))\nelements.append(Paragraph(\"CATALOGUE DE PIÈCES ÉVOLUTIF HQS\", styles[\"TitrePrincipal\"]))\nelements.append(Paragraph(\"Des solutions techniques sur mesure, fiables et prêtes à l’emploi\", styles[\"SousTitre\"]))\nelements.append(PageBreak())\n# --- PRÉSENTATION HQS ---\npresentation = \"\"\"",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "presentation",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "presentation = \"\"\"\nBasée en Savoie, HQS Solutions est un bureau d’étude technique spécialisé dans le développement de solutions clés en main pour les projets mécaniques et industriels.<br/><br/>\nNous accompagnons nos clients de la définition du besoin jusqu’à la livraison, en garantissant qualité, fiabilité et réactivité.<br/><br/>\nNotre expertise en génie mécanique, combinée à un réseau de partenaires qualifiés, nous permet d’offrir des solutions sur mesure adaptées à chaque projet.<br/><br/>\n<b>Nos valeurs :</b> Innovation – Rigueur – Réactivité – Accompagnement client.\n\"\"\"\nelements.append(Paragraph(\"<b>PRÉSENTATION HQS SOLUTIONS</b>\", styles[\"TitreProduit\"]))\nelements.append(Paragraph(presentation, styles[\"Texte\"]))\nelements.append(PageBreak())\n# --- PROCESSUS HQS ---",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "processus",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "processus = [\n    \"1. Analyse du besoin client\",\n    \"2. Cahier des charges personnalisé\",\n    \"3. Modélisation & conception 3D\",\n    \"4. Recherche de fabricant & production\",\n    \"5. Contrôle qualité rigoureux\",\n    \"6. Livraison et suivi client\"\n]\nelements.append(Paragraph(\"<b>PROCESSUS HQS</b>\", styles[\"TitreProduit\"]))\nfor p in processus:",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "produits",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "produits = [\n    (\"Attache Hublot\", \"ATHU1\", \"Attache robuste conçue pour garantir une fixation fiable et durable, idéale pour les environnements extérieurs.\", \"Résine + traitement UV\", \"Noir\", \"10 pièces\"),\n    (\"Support Attache Hublot\", \"ATHU2\", \"Support conçu pour assurer la stabilité et la durabilité de l’attache hublot, même sous contraintes mécaniques répétées.\", \"Résine + traitement UV\", \"Noir\", \"10 pièces\"),\n    (\"Corps Poignée\", \"COPOI1\", \"Élément principal de poignée, alliant ergonomie et robustesse. Idéal pour les applications nécessitant résistance et design fonctionnel.\", \"Résine + traitement UV\", \"Noir\", \"1 pièce\"),\n    (\"Cran de Verrouillage Poignée\", \"COPOI2\", \"Cran de verrouillage précis assurant un maintien sûr et une manipulation fluide. Conçu pour une durabilité maximale.\", \"Résine + traitement UV\", \"Noir\", \"10 pièces\"),\n    (\"Clips Cran de Verrouillage Poignée\", \"COPOI3\", \"Clips de maintien fiables assurant la cohésion de l’ensemble poignée. Faciles à installer et résistants aux contraintes mécaniques.\", \"Résine + traitement UV\", \"Noir\", \"10 pièces\"),\n]\nfor nom, ref, desc, mat, coul, qte in produits:\n    data = [\n        [Paragraph(f\"<b>{nom}</b> – Réf. {ref}\", styles[\"TitreProduit\"])],",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "contact",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "contact = \"\"\"\n<b>HQS Solutions</b><br/>\n105 avenue Combe de Savoie, 73460 Grésy-sur-Isère<br/>\n📞 +33 6 52 98 57 86<br/>\n✉ hqs.contacts@gmail.com<br/><br/>\nZone prévue pour QR Code (non inclus)\n\"\"\"\nelements.append(Paragraph(\"<b>CONTACT</b>\", styles[\"TitreProduit\"]))\nelements.append(Paragraph(contact, styles[\"Texte\"]))\nelements.append(PageBreak())",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     },
     {
         "label": "mentions",
         "kind": 5,
-        "importPath": "py.py",
-        "description": "py.py",
+        "importPath": "py",
+        "description": "py",
         "peekOfCode": "mentions = \"\"\"\n© 2025 HQS Solutions – Tous droits réservés.<br/>\nToute reproduction, modification ou diffusion, même partielle, de ce catalogue est strictement interdite sans autorisation écrite de HQS Solutions.<br/>\nLes informations techniques et visuelles contenues dans ce document sont données à titre indicatif et peuvent être modifiées sans préavis.\n\"\"\"\nelements.append(Paragraph(\"<b>MENTIONS LÉGALES</b>\", styles[\"TitreProduit\"]))\nelements.append(Paragraph(mentions, styles[\"Texte\"]))\n# --- GÉNÉRATION DU PDF ---\ndoc.build(elements, onLaterPages=add_page_number, onFirstPage=add_page_number)\nprint(\"✅ Catalogue_HQS_Version_Claire.pdf généré avec succès.\")",
-        "detail": "py.py",
+        "detail": "py",
         "documentation": {}
     }
 ]

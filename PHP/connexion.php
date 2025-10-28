@@ -12,18 +12,20 @@ if (empty($mail) || empty($password)) {
 
 
 
-$query = "SELECT id FROM compte WHERE mail=:mail and password=:password";
+$query = "select verifyHashPassword(:passwordInsert, salt, password) as validity
+from compte
+where mail = :mail;";
 $stmt = $db->prepare($query);
 $stmt->execute(array(
-    ':mail' => $mail,
-    ':password' => $password
+    ':passwordInsert' => $password,
+    ':mail' => $mail
 ));
 
 $result = $stmt->fetchColumn();
 echo $result;
 
 
-if ($result !== false) {
+if ($result == 1) {
     $_SESSION['error'] = [
         "success" => true,
         "message" => "Connexion réussie"

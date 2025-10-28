@@ -26,8 +26,14 @@ function insertUser($nom, $prenom, $date, $address, $mail, $tel, $password, $db)
     if (checkDuplicate($mail, $tel, $db) == 0) {
 
         $query = "INSERT INTO 
-            compte (nom, prenom, mail, adresse, naissance, tel, password) 
-            VALUES (:nom, :prenom, :mail, :address, :date, :tel, :password)";
+            compte (nom, prenom, mail, adresse, naissance, tel, salt, password) 
+            VALUES (:nom, :prenom, :mail, :address, :date, :tel, :salt, :password)";
+
+        $salt = bin2hex(random_bytes(32));
+
+        // Hacher le mot de passe avec SHA256 + salt
+        $hashedPassword = hash('sha256', $salt . $password);
+
 
         $stmt = $db->prepare($query);
         $stmt->execute(array(
@@ -37,7 +43,8 @@ function insertUser($nom, $prenom, $date, $address, $mail, $tel, $password, $db)
             ':address' => $address,
             ':mail' => $mail,
             ':tel' => $tel,
-            ':password' => $password
+            ':salt' => $salt,
+            ':password' => $hashedPassword
         ));
         $_SESSION["error"] = [
             "success" => true,
