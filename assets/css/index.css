@@ -1,56 +1,3 @@
-.trailer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100dvh;
-
-    background: #AA1C92;
-    background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
-
-    z-index: -2;
-}
-
-.overlay {
-
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100dvh;
-
-    background: rgba(0, 0, 0, 0.7);
-
-    z-index: -1;
-}
-
-.trailer video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.content {
-    /* background: rgba(255, 255, 255, 0.6); */
-    width: 50%;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 30px;
-}
-
-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    align-items: center;
-
-    margin-top: 40px;
-}
-
 h2 {
     margin-bottom: 50px;
     font-size: 50px;
@@ -58,7 +5,11 @@ h2 {
 }
 
 section.logo img {
-    width: 450px;
+
+
+    width: 90%;
+
+    max-width: 450px;
 
     filter:
         drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
@@ -366,4 +317,87 @@ section.urgence p {
     z-index: 10;
 
     border-radius: 10px;
+}
+
+.tb,
+.tbf {
+    display: table;
+}
+
+.tb-vertical,
+.tbf-vertical {
+    display: none;
+}
+
+@media screen and (max-width: 1050px) {
+    .tb {
+        display: none;
+    }
+
+    .tb-vertical {
+        display: table;
+    }
+
+}
+
+@media screen and (max-width: 740px) {
+    .tbf{
+        display: none;
+    }
+
+    .tbf-vertical{
+        display: table;
+    }
+
+        .tbf-vertical{
+        gap: 20px;
+    }
+
+    .bloc{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        border-bottom: 2px solid white;
+
+        padding: 30px 10px;
+    }
+    .bloc div{
+        font-size: 20px;
+    }
+    .bloc .lib{
+        font-weight: bold;
+    }
+
+    .content {
+        width: 90%;
+    }
+
+    .urg{
+        font-size: 35px;
+    }
+
+    section.inscription{
+        width: auto;
+        justify-content: center;
+    }
+
+    section.inscription form{width:90%;}
+
+}
+
+@media screen and (max-width: 450px) {
+    .reseau {
+        flex-direction: column;
+        align-items: center;
+
+        margin-top: 10px;
+
+        gap: 20px;
+    }
+
+    section.inscription form{width:90%;
+    min-width: 0px;}
 }

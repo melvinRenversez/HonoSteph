@@ -76,7 +76,7 @@ include("./PHP/database.php");
 
             <h2>Horaires</h2>
 
-            <table class="tbU">
+            <table class="tb">
                 <thead>
                     <tr>
                         <th>Lundi</th>
@@ -109,6 +109,47 @@ include("./PHP/database.php");
                     </tr>
                 </tbody>
             </table>
+
+            <table class="tb-vertical">
+    <tbody>
+        <tr>
+            <th>Lundi</th>
+            <td>09:30 - 12:00</td>
+            <td>13:30 - 19:00</td>
+        </tr>
+        <tr>
+            <th>Mardi</th>
+            <td>09:30 - 12:00</td>
+            <td>13:30 - 19:00</td>
+        </tr>
+        <tr>
+            <th>Mercredi</th>
+            <td>09:30 - 12:00</td>
+            <td>13:30 - 19:00</td>
+        </tr>
+        <tr>
+            <th>Jeudi</th>
+            <td>09:30 - 12:00</td>
+            <td>13:30 - 19:00</td>
+        </tr>
+        <tr>
+            <th>Vendredi</th>
+            <td>09:30 - 12:00</td>
+            <td>13:30 - 19:00</td>
+        </tr>
+        <tr>
+            <th>Samedi</th>
+            <td>09:30 - 12:00</td>
+            <td>13:30 - 19:00</td>
+        </tr>
+        <tr>
+            <th>Dimanche</th>
+            <td>09:30 - 12:00</td>
+            <td>13:30 - 19:00</td>
+        </tr>
+    </tbody>
+</table>
+
         </section>
 
 
@@ -116,7 +157,7 @@ include("./PHP/database.php");
 
             <h2>Tarifs</h2>
 
-            <table>
+            <table class="tbf">
                 <thead>
                     <tr>
                         <th>Type d'adhésion</th>
@@ -145,6 +186,27 @@ include("./PHP/database.php");
 
                 </tbody>
             </table>
+
+            <div class="tbf-vertical">
+
+            <?php
+                    $query = "SELECT libelle, prix, description FROM type_adhesion;";
+                    $stmt = $db->prepare($query);
+                    $stmt->execute();
+                    $result = $stmt->fetchAll();
+
+                    foreach ($result as $row) {
+                        echo "<div class='bloc'>";
+                        echo "<div class='lib'>" . $row['libelle'] . "</div>";
+                        echo "<div class='px'>" . $row['prix'] . "€</div>";
+                        echo "<div class='desc'>" . $row['description'] . "</div>";
+                        echo "</div>";
+                    }
+                    ?>
+                
+                </div>
+
+
         </section>
 
         <?php if(!isset($_SESSION['id'])): ?>
@@ -218,7 +280,7 @@ include("./PHP/database.php");
 
 
         <section class="urgence">
-            <h2>En cas d'urgence</h2>
+            <h2 class="urg">En cas d'urgence</h2>
 
             <p class="gapb">Si vous avez n’importe quel problème lors de votre inscription ou lors de vos sessions au
                 sein
