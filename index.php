@@ -173,9 +173,9 @@ include("./PHP/database.php");
                     $query = "SELECT libelle, prix, description FROM type_adhesion;";
                     $stmt = $db->prepare($query);
                     $stmt->execute();
-                    $result = $stmt->fetchAll();
+                    $tarifs = $stmt->fetchAll();
 
-                    foreach ($result as $row) {
+                    foreach ($tarifs as $row) {
                         echo "<tr>";
                         echo "<td>" . $row['libelle'] . "</td>";
                         echo "<td>" . $row['prix'] . "€</td>";
@@ -190,12 +190,8 @@ include("./PHP/database.php");
             <div class="tbf-vertical">
 
             <?php
-                    $query = "SELECT libelle, prix, description FROM type_adhesion;";
-                    $stmt = $db->prepare($query);
-                    $stmt->execute();
-                    $result = $stmt->fetchAll();
 
-                    foreach ($result as $row) {
+                    foreach ($tarifs as $row) {
                         echo "<div class='bloc'>";
                         echo "<div class='lib'>" . $row['libelle'] . "</div>";
                         echo "<div class='px'>" . $row['prix'] . "€</div>";

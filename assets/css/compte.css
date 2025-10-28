@@ -4,21 +4,6 @@ h2 {
     color: white;
 }
 
-section.logo img {
-    width: 450px;
-
-    filter:
-        drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
-        /* léger violet */
-        drop-shadow(0 0 40px rgba(170, 28, 146, 0.4));
-    /* très subtil */
-
-}
-
-
-
-
-
 section.famille button {
     padding: 12px;
 
@@ -148,11 +133,11 @@ tr {
 }
 
 section.tarif table,
-section.famille table,
+section.famille table.tbmf,
 section.tarif th,
-section.famille th,
+section.famille table.tbmf th,
 section.tarif td,
-section.famille td {
+section.famille table.tbmf td {
     border-collapse: collapse;
     width: min-content;
     border: 1px solid #fff;
@@ -357,12 +342,16 @@ section.abonnement .allAbonnements .box {
     padding: 10px 20px;
 
     position: relative;
+
+    transition: 0.3s ease;
 }
 
 section.abonnement .allAbonnements .box:hover {
     transform: translateY(-10px);
     backdrop-filter: blur(12px) !important;
     cursor: pointer;
+
+    transition: 0.3s ease;
 }
 
 
@@ -544,3 +533,101 @@ section.abonnement .allAbonnements .box .delete:hover svg path {
     padding-top: 10px;
 }
 
+
+.tbf,
+.tbmf{
+    display: table;
+}
+
+
+.tbf-vertical,
+.tbmf-vertical{
+    display: none;
+}
+
+@media screen and (max-width: 740px) {
+
+    .content{
+        width: 65%;
+    }
+
+    .tbf {
+        display: none;
+    }
+
+    .tbf-vertical {
+        display: table;
+
+        margin: 10px 0px;
+        gap: 20px;
+    }
+    
+    
+    .bloc {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        border-bottom: 2px solid white;
+
+        padding: 30px 10px;
+    }
+
+    .bloc div {
+        font-size: 20px;
+    }
+
+    .bloc .lib {
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 650px) {
+.tbmf {
+        display: none;
+    }
+
+    .tbmf-vertical {
+        display: table;
+
+        margin: 10px 0px;
+        gap: 20px;
+    }
+
+    .dim{
+        font-size: 35px;
+    }
+
+    
+section.famille table.tbmf-vertical,
+section.famille table.tbmf-vertical th,
+section.famille table.tbmf-vertical td {
+
+        border-collapse: collapse;
+    width: min-content;
+    border: 1px solid #fff;
+    color: white;
+
+    font-size: 16px;
+
+    padding: 10px 20px;
+
+}
+
+.content{
+    width: 90%;
+}
+
+section.abonnement .allAbonnements .box{
+    width: 100%;
+}
+
+form{
+    width: 90% !important;
+    min-width: 0px !important;
+}
+
+
+}

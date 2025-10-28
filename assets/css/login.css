@@ -1,57 +1,4 @@
-section.logo img {
-    width: 350px;
 
-    filter:
-        drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
-        /* léger violet */
-        drop-shadow(0 0 40px rgba(170, 28, 146, 0.4));
-    /* très subtil */
-
-}
-
-.trailer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100dvh;
-
-    background: #AA1C92;
-    background: linear-gradient(45deg, rgba(170, 28, 146, 1) 0%, rgba(77, 51, 149, 1) 100%);
-
-    z-index: -2;
-}
-
-.overlay {
-
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100dvh;
-
-    background: rgba(0, 0, 0, 0.7);
-
-    z-index: -1;
-}
-
-.trailer video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    align-items: center;
-
-    margin-top: 40px;
-}
 
 section.connection {
     margin-top: 100px;
@@ -176,4 +123,22 @@ section.connection form button {
 section.connection form button:hover {
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
+}
+
+@media screen and (max-width: 500px) {
+
+    .content{
+        width: 90%;
+    }
+
+    section.connection {
+        width: 100%;
+    }
+
+    section.connection form {
+        width: 90%;
+        min-width: 0px;
+    }
+
+    
 }

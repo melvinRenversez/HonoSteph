@@ -110,6 +110,21 @@ section {
     margin-top: 40px;
 }
 
+section.logo img {
+
+
+    width: 90%;
+
+    max-width: 450px;
+
+    filter:
+        drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
+        /* léger violet */
+        drop-shadow(0 0 40px rgba(170, 28, 146, 0.4));
+    /* très subtil */
+
+}
+
 .popup {
     position: fixed;
     top: 50px;
@@ -181,4 +196,6 @@ section {
     font-size: 16px;
     font-weight: bold;
     font-style: italic;
+
+    text-align: center;
 }

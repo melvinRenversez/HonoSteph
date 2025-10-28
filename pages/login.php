@@ -21,6 +21,10 @@
     <div class="overlay"></div>
     </div>
 
+    <a class="modif" href="../index.php">
+        Retour
+    </a>
+
     <div class="content">
 
 

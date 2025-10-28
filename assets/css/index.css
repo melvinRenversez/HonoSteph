@@ -4,21 +4,6 @@ h2 {
     color: white;
 }
 
-section.logo img {
-
-
-    width: 90%;
-
-    max-width: 450px;
-
-    filter:
-        drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px rgba(170, 28, 146, 0.6))
-        /* léger violet */
-        drop-shadow(0 0 40px rgba(170, 28, 146, 0.4));
-    /* très subtil */
-
-}
-
 section.Presentation p {
     font-size: 25px;
     color: white;
@@ -73,6 +58,7 @@ section.inscription p {
 
     margin-bottom: 50px;
 }
+
 section.inscription form {
     display: flex;
     flex-direction: column;
@@ -210,6 +196,9 @@ section.urgence p {
     display: flex;
 
     gap: 80px;
+
+
+    margin-bottom: 40px;
 }
 
 .gapb {
@@ -336,19 +325,19 @@ section.urgence p {
 }
 
 @media screen and (max-width: 740px) {
-    .tbf{
+    .tbf {
         display: none;
     }
 
-    .tbf-vertical{
+    .tbf-vertical {
         display: table;
-    }
 
-        .tbf-vertical{
+        margin: 10px 0px;
         gap: 20px;
     }
 
-    .bloc{
+
+    .bloc {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -359,10 +348,12 @@ section.urgence p {
 
         padding: 30px 10px;
     }
-    .bloc div{
+
+    .bloc div {
         font-size: 20px;
     }
-    .bloc .lib{
+
+    .bloc .lib {
         font-weight: bold;
     }
 
@@ -370,16 +361,18 @@ section.urgence p {
         width: 90%;
     }
 
-    .urg{
+    .urg {
         font-size: 35px;
     }
 
-    section.inscription{
+    section.inscription {
         width: auto;
         justify-content: center;
     }
 
-    section.inscription form{width:90%;}
+    section.inscription form {
+        width: 90%;
+    }
 
 }
 
@@ -393,6 +386,8 @@ section.urgence p {
         gap: 20px;
     }
 
-    section.inscription form{width:90%;
-    min-width: 0px;}
+    section.inscription form {
+        width: 90%;
+        min-width: 0px;
+    }
 }
