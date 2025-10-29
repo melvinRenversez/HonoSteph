@@ -266,3 +266,10 @@ where c.id = 6 and mf.id=110;
 select id
 from adhesion 
 where fk_compte=6 and id = 188;
+
+
+
+
+select verifyHashPassword("poipoi", salt, password) as validity
+from compte
+where id = 13;
